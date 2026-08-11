@@ -2,68 +2,68 @@
   "current": "Dawn",
   "presets": {
     "Dawn": {
-      "logo_width": 90,
+      "logo_width": 150,
       "customer_account_menu": "customer-account-main-menu",
       "color_schemes": {
         "scheme-1": {
           "settings": {
-            "background": "#FFFFFF",
+            "background": "#FAF7F2",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#2B2B2B",
+            "button": "#E36A4C",
+            "button_label": "#FAF7F2",
+            "secondary_button_label": "#2B2B2B",
+            "shadow": "#2B2B2B"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#E7DFD2",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#2B2B2B",
+            "button": "#E36A4C",
+            "button_label": "#FAF7F2",
+            "secondary_button_label": "#2B2B2B",
+            "shadow": "#2B2B2B"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#242833",
+            "background": "#2B2B2B",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#000000",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#FAF7F2",
+            "button": "#E36A4C",
+            "button_label": "#FAF7F2",
+            "secondary_button_label": "#FAF7F2",
+            "shadow": "#000000"
           }
         },
         "scheme-4": {
           "settings": {
-            "background": "#121212",
+            "background": "#CFC6B6",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#121212",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#2B2B2B",
+            "button": "#2B2B2B",
+            "button_label": "#FAF7F2",
+            "secondary_button_label": "#2B2B2B",
+            "shadow": "#2B2B2B"
           }
         },
         "scheme-5": {
           "settings": {
-            "background": "#334FB4",
+            "background": "#E36A4C",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#334FB4",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#FAF7F2",
+            "button": "#2B2B2B",
+            "button_label": "#FAF7F2",
+            "secondary_button_label": "#FAF7F2",
+            "shadow": "#2B2B2B"
           }
         }
       },
-      "type_header_font": "assistant_n4",
+      "type_header_font": "manrope_n8",
       "heading_scale": 100,
-      "type_body_font": "assistant_n4",
+      "type_body_font": "manrope_n4",
       "body_scale": 100,
       "page_width": 1200,
       "spacing_sections": 0,
@@ -73,21 +73,21 @@
       "animations_hover_elements": "none",
       "buttons_border_thickness": 1,
       "buttons_border_opacity": 100,
-      "buttons_radius": 0,
+      "buttons_radius": 6,
       "buttons_shadow_opacity": 0,
       "buttons_shadow_horizontal_offset": 0,
       "buttons_shadow_vertical_offset": 4,
       "buttons_shadow_blur": 5,
       "variant_pills_border_thickness": 1,
       "variant_pills_border_opacity": 55,
-      "variant_pills_radius": 40,
+      "variant_pills_radius": 6,
       "variant_pills_shadow_opacity": 0,
       "variant_pills_shadow_horizontal_offset": 0,
       "variant_pills_shadow_vertical_offset": 4,
       "variant_pills_shadow_blur": 5,
       "inputs_border_thickness": 1,
       "inputs_border_opacity": 55,
-      "inputs_radius": 0,
+      "inputs_radius": 6,
       "inputs_shadow_opacity": 0,
       "inputs_shadow_horizontal_offset": 0,
       "inputs_shadow_vertical_offset": 4,
@@ -98,7 +98,7 @@
       "card_color_scheme": "scheme-2",
       "card_border_thickness": 0,
       "card_border_opacity": 10,
-      "card_corner_radius": 0,
+      "card_corner_radius": 8,
       "card_shadow_opacity": 0,
       "card_shadow_horizontal_offset": 0,
       "card_shadow_vertical_offset": 4,
@@ -109,7 +109,7 @@
       "collection_card_color_scheme": "scheme-2",
       "collection_card_border_thickness": 0,
       "collection_card_border_opacity": 10,
-      "collection_card_corner_radius": 0,
+      "collection_card_corner_radius": 8,
       "collection_card_shadow_opacity": 0,
       "collection_card_shadow_horizontal_offset": 0,
       "collection_card_shadow_vertical_offset": 4,
@@ -120,7 +120,7 @@
       "blog_card_color_scheme": "scheme-2",
       "blog_card_border_thickness": 0,
       "blog_card_border_opacity": 10,
-      "blog_card_corner_radius": 0,
+      "blog_card_corner_radius": 8,
       "blog_card_shadow_opacity": 0,
       "blog_card_shadow_horizontal_offset": 0,
       "blog_card_shadow_vertical_offset": 4,
@@ -141,7 +141,7 @@
       "media_shadow_blur": 5,
       "popup_border_thickness": 1,
       "popup_border_opacity": 10,
-      "popup_corner_radius": 0,
+      "popup_corner_radius": 8,
       "popup_shadow_opacity": 5,
       "popup_shadow_horizontal_offset": 0,
       "popup_shadow_vertical_offset": 4,
@@ -153,11 +153,11 @@
       "drawer_shadow_vertical_offset": 4,
       "drawer_shadow_blur": 5,
       "badge_position": "bottom left",
-      "badge_corner_radius": 40,
+      "badge_corner_radius": 6,
       "sale_badge_color_scheme": "scheme-4",
       "sold_out_badge_color_scheme": "scheme-3",
-      "brand_headline": "",
-      "brand_description": "<p></p>",
+      "brand_headline": "Curated finds. Real reviews. Fast UAE delivery.",
+      "brand_description": "<p>The trending products worth trusting \u2014 tested, curated, and delivered across the UAE in days, not weeks.</p>",
       "brand_image_width": 100,
       "social_twitter_link": "",
       "social_facebook_link": "",
@@ -172,7 +172,7 @@
       "predictive_search_show_vendor": false,
       "predictive_search_show_price": false,
       "currency_code_enabled": true,
-      "cart_type": "notification",
+      "cart_type": "drawer",
       "show_vendor": false,
       "show_cart_note": false,
       "cart_drawer_collection": "",
@@ -190,7 +190,11 @@
             "color_scheme": "scheme-1"
           }
         }
-      }
+      },
+      "fayzo_show_cod_badge": true,
+      "fayzo_show_tabby_badge": false,
+      "fayzo_show_tamara_badge": false,
+      "fayzo_delivery_promise": "2\u20134 days across the UAE"
     }
   }
 }

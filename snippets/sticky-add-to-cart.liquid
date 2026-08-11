@@ -1,0 +1,26 @@
+{% comment %}
+  Sticky mobile Add to Cart bar (PRD Section 4, step 4): "sticky on scroll
+  on mobile so it's always reachable." Appears once the real Add to Cart
+  button (#Fayzo-BuyButtons-{{ section.id }}) scrolls out of the viewport;
+  submits the same product form via the `form` attribute, no duplicate
+  form/state.
+{% endcomment %}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+-%}
+<fayzo-sticky-atc class="fayzo-sticky-atc" data-watch-target="Fayzo-BuyButtons-{{ section.id }}" hidden>
+  <div class="fayzo-sticky-atc__inner page-width">
+    <div class="fayzo-sticky-atc__info">
+      <span class="fayzo-sticky-atc__title">{{ product.title | escape }}</span>
+      <span class="fayzo-sticky-atc__price">{{ variant.price | money }}</span>
+    </div>
+    <button
+      type="submit"
+      form="{{ product_form_id }}"
+      name="add"
+      class="button fayzo-sticky-atc__button"
+    >
+      {{ 'products.product.add_to_cart' | t }}
+    </button>
+  </div>
+</fayzo-sticky-atc>

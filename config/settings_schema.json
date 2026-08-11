@@ -8,6 +8,41 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Fayzo: payment & trust badges",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Controls the payment/delivery badges shown under the price on product pages (PRD Section 4). Only turn a badge on once that payment method is genuinely live — an unconnected badge is a broken promise at checkout."
+      },
+      {
+        "type": "checkbox",
+        "id": "fayzo_show_cod_badge",
+        "label": "Show Cash on Delivery badge",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "fayzo_show_tabby_badge",
+        "label": "Show Tabby badge",
+        "info": "Turn on only once your Tabby merchant account is approved and the Tabby app is installed and enabled in Settings > Payments.",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "fayzo_show_tamara_badge",
+        "label": "Show Tamara badge",
+        "info": "Turn on only once your Tamara merchant account is approved and the Tamara app is installed and enabled in Settings > Payments.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "fayzo_delivery_promise",
+        "label": "Delivery promise text",
+        "default": "2–4 days across the UAE"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

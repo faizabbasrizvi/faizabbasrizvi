@@ -15,6 +15,7 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'fayzo-product.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -41,6 +42,9 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  {%- if product.selected_or_first_available_variant.available -%}
+    <script src="{{ 'fayzo-sticky-atc.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -106,6 +110,10 @@
                       </h2>
                     </a>
                   </div>
+                {%- when 'benefit_statement' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'product-benefit-statement', product: product -%}
+                  </div>
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
@@ -140,6 +148,14 @@
                       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                       {{ form | payment_terms }}
                     {%- endform -%}
+                  </div>
+                {%- when 'payment_badges' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'payment-trust-badges' -%}
+                  </div>
+                {%- when 'specifics' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'product-specifics', product: product -%}
                   </div>
                 {%- when 'inventory' -%}
                   <p
@@ -492,13 +508,18 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
-                  {%- render 'buy-buttons',
-                    block: block,
-                    product: product,
-                    product_form_id: product_form_id,
-                    section_id: section.id,
-                    show_pickup_availability: true
-                  -%}
+                  <div id="Fayzo-BuyButtons-{{ section.id }}">
+                    {%- render 'buy-buttons',
+                      block: block,
+                      product: product,
+                      product_form_id: product_form_id,
+                      section_id: section.id,
+                      show_pickup_availability: true
+                    -%}
+                  </div>
+                  {%- unless product.selected_or_first_available_variant.available -%}
+                    {%- render 'product-restock-notify', product: product, section: section -%}
+                  {%- endunless -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -698,6 +719,10 @@
         </div>
       </div>
 
+      {%- if product.selected_or_first_available_variant.available -%}
+        {%- render 'sticky-add-to-cart', product: product, section: section, product_form_id: product_form_id -%}
+      {%- endif -%}
+
       {% render 'product-media-modal', variant_images: variant_images %}
 
       {% assign popups = section.blocks | where: 'type', 'popup' %}
@@ -802,6 +827,21 @@
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "benefit_statement",
+      "name": "Benefit statement",
+      "limit": 1
+    },
+    {
+      "type": "payment_badges",
+      "name": "Payment & delivery badges",
+      "limit": 1
+    },
+    {
+      "type": "specifics",
+      "name": "Specifics",
       "limit": 1
     },
     {

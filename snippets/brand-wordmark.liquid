@@ -1,0 +1,18 @@
+{% comment %}
+  Renders the Fayzo wordmark as styled text (Brand Book Section 5: bold
+  all-caps "FAYZO", terracotta accent carried onto the "A").
+
+  Interim stand-in for the approved logo file until it's uploaded via
+  Settings > Logo in the theme editor — the moment settings.logo is set,
+  every place that calls this snippet already falls back to the real
+  image instead (see header.liquid, main-password-header.liquid).
+
+  Accepts:
+  - class: additional class(es) for the wrapping element
+  - tag: wrapping HTML tag (default span)
+{% endcomment %}
+{%- liquid
+  assign tag = tag | default: 'span'
+  assign wordmark = 'FAYZO'
+-%}
+<{{ tag }} class="brand-wordmark {{ class }}">{%- for character in wordmark -%}{%- if character == 'A' -%}<span class="brand-wordmark__accent">A</span>{%- else -%}{{ character }}{%- endif -%}{%- endfor -%}</{{ tag }}>

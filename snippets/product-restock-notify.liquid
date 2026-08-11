@@ -1,0 +1,43 @@
+{% comment %}
+  Out-of-stock capture (PRD Section 10): "Product page shows 'Back in stock
+  soon' (not hidden/removed) with an email-me-when-available capture —
+  preserves ad traffic value instead of wasting it on a dead link."
+
+  Uses Shopify's native customer form (no app required) and tags the
+  customer with the specific product so restock notifications can be sent
+  as a manual segment/Shopify Flow trigger, filterable by tag in Customers.
+{% endcomment %}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign restock_tag = 'restock-request-' | append: product.id
+-%}
+<div class="fayzo-restock-notify">
+  {%- form 'customer', id: 'RestockNotify-' | append: section.id, class: 'fayzo-restock-notify__form' -%}
+    <input type="hidden" name="contact[tags]" value="{{ restock_tag }}">
+    <input type="hidden" name="contact[note]" value="Wants to know when '{{ product.title | escape }}' is back in stock.">
+    {%- if form.posted_successfully? -%}
+      <p class="fayzo-restock-notify__success">
+        You're on the list — we'll email you the moment this is back.
+      </p>
+    {%- else -%}
+      <p class="fayzo-restock-notify__prompt">Want us to email you when it's back?</p>
+      <div class="fayzo-restock-notify__field-row">
+        <div class="field">
+          <input
+            id="RestockEmail-{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            class="field__input"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="Email address"
+            required
+          >
+          <label class="field__label" for="RestockEmail-{{ section.id }}">Email address</label>
+        </div>
+        <button type="submit" class="button button--secondary">Notify me</button>
+      </div>
+    {%- endif -%}
+  {%- endform -%}
+</div>

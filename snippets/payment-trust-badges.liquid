@@ -1,0 +1,35 @@
+{% comment %}
+  Payment/delivery trust badges shown directly under price (PRD Section 4,
+  step 3): "COD/Tabby/Tamara badges directly beneath [price] — visible
+  without scrolling on mobile." Stated plainly, no fake urgency (Brand Book
+  Section 4) — this is information, not a sales trick.
+
+  Each badge is gated by its own theme setting so nothing appears until
+  that payment method is genuinely connected (Settings > Payments).
+{% endcomment %}
+<div class="fayzo-trust-badges">
+  {%- if settings.fayzo_show_cod_badge -%}
+    <span class="fayzo-trust-badge">
+      {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      Cash on Delivery
+    </span>
+  {%- endif -%}
+  {%- if settings.fayzo_show_tabby_badge -%}
+    <span class="fayzo-trust-badge">
+      {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      Split with Tabby
+    </span>
+  {%- endif -%}
+  {%- if settings.fayzo_show_tamara_badge -%}
+    <span class="fayzo-trust-badge">
+      {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      Pay later with Tamara
+    </span>
+  {%- endif -%}
+  {%- if settings.fayzo_delivery_promise != blank -%}
+    <span class="fayzo-trust-badge fayzo-trust-badge--delivery">
+      {{- 'icon-truck.svg' | inline_asset_content -}}
+      {{ settings.fayzo_delivery_promise }}
+    </span>
+  {%- endif -%}
+</div>

@@ -2465,6 +2465,17 @@ input[type='checkbox'] {
   color: rgba(var(--color-foreground), 0.75);
 }
 
+/* Fayzo wordmark: bold all-caps, terracotta accent on the "A" (Brand Book Section 5) */
+.brand-wordmark {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgb(var(--color-foreground));
+}
+
+.brand-wordmark__accent {
+  color: rgb(var(--color-button));
+}
+
 .header__heading-logo {
   height: auto;
   max-width: 100%;

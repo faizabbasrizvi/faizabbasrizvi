@@ -1,0 +1,162 @@
+/* Fayzo product page components (PRD Section 4). Deliberately flat: no
+   nested card chrome, no shadows-as-decoration, no pill badges — see Brand
+   Book Section 3 (the "generic dropship" comparison this build is tested
+   against). */
+
+/* Benefit statement — one line under the title, not a repeat of it */
+.fayzo-benefit-statement {
+  margin: 0.4rem 0 0;
+  color: rgba(var(--color-foreground), 0.75);
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+/* Payment / delivery trust badges, directly under price */
+.fayzo-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.fayzo-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+  border-radius: var(--buttons-radius, 6px);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: rgb(var(--color-foreground));
+  background: transparent;
+}
+
+.fayzo-trust-badge svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Specifics block — structured facts, not a paragraph */
+.fayzo-specifics {
+  margin: 2.4rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(var(--color-foreground), 0.12);
+}
+
+.fayzo-specifics__heading {
+  margin: 0 0 1.2rem;
+  font-size: 1.4rem;
+  font-weight: var(--font-heading-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.fayzo-specifics__list {
+  margin: 0;
+}
+
+.fayzo-specifics__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.fayzo-specifics__row:first-child {
+  padding-top: 0;
+}
+
+.fayzo-specifics__label {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.65);
+  font-size: 1.4rem;
+}
+
+.fayzo-specifics__value {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Out-of-stock restock capture */
+.fayzo-restock-notify {
+  margin-top: 1.2rem;
+  padding: 1.6rem;
+  background: #e7dfd2; /* Sand — Brand Book Section 5 */
+  border-radius: 8px;
+}
+
+.fayzo-restock-notify__prompt,
+.fayzo-restock-notify__success {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+
+.fayzo-restock-notify__field-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.fayzo-restock-notify__field-row .field {
+  flex: 1;
+}
+
+/* Sticky mobile Add to Cart bar */
+.fayzo-sticky-atc {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background: rgb(var(--color-background));
+  border-top: 1px solid rgba(var(--color-foreground), 0.12);
+  box-shadow: 0 -2px 12px rgba(var(--color-shadow), 0.06);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.fayzo-sticky-atc[hidden] {
+  display: none;
+}
+
+.fayzo-sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1rem 1.5rem;
+}
+
+.fayzo-sticky-atc__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fayzo-sticky-atc__title {
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fayzo-sticky-atc__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.fayzo-sticky-atc__button {
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .fayzo-sticky-atc {
+    display: none;
+  }
+}
