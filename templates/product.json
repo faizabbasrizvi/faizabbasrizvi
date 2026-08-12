@@ -35,8 +35,39 @@
             "show_gift_card_recipient": true
           }
         },
+        "trust_row": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "box",
+            "heading_1": "Curated finds",
+            "icon_2": "star",
+            "heading_2": "Real reviews",
+            "icon_3": "truck",
+            "heading_3": "Fast UAE delivery"
+          }
+        },
+        "benefits_list": {
+          "type": "benefits_list"
+        },
         "specifics": {
           "type": "specifics"
+        },
+        "faq_shipping": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping & delivery",
+            "icon": "truck",
+            "content": "<p>We deliver across the UAE in 2–4 days.</p>"
+          }
+        },
+        "faq_payment": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Payment options",
+            "icon": "lock",
+            "content": "<p>Cash on delivery is available on every order. Tabby and Tamara Buy Now, Pay Later are also available at checkout where enabled.</p>"
+          }
         }
       },
       "block_order": [
@@ -48,7 +79,11 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "specifics"
+        "trust_row",
+        "benefits_list",
+        "specifics",
+        "faq_shipping",
+        "faq_payment"
       ],
       "settings": {
         "enable_sticky_info": true,

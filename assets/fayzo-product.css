@@ -19,6 +19,48 @@
   line-height: 1.35;
 }
 
+/* Price box — single price given weight via a bordered card, no plan tiers */
+.fayzo-price-box {
+  margin: 1rem 0;
+  padding: 1.6rem 2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  border-radius: 8px;
+}
+
+.fayzo-price-box .price {
+  margin: 0;
+}
+
+.fayzo-price-box__delivery {
+  margin: 0.4rem 0 0;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+/* Benefits checklist — specific claims, not vague superlatives */
+.fayzo-benefits-list {
+  margin: 1.6rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fayzo-benefits-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.fayzo-benefits-list__item svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: rgb(var(--color-button));
+}
+
 /* Payment / delivery trust badges, directly under price */
 .fayzo-trust-badges {
   display: flex;
@@ -70,6 +112,13 @@
   height: 1.6rem;
   flex-shrink: 0;
   color: rgb(var(--color-button));
+}
+
+/* Bigger, more prominent add-to-cart button on the product page */
+.product__info-container [id^="Fayzo-BuyButtons-"] .product-form__submit {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  font-size: 1.6rem;
 }
 
 /* Specifics block — structured facts, not a paragraph */

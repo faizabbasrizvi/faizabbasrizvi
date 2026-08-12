@@ -1,0 +1,21 @@
+{% comment %}
+  Benefits checklist — a short list of specific, real benefit claims with a
+  checkmark, one per line (Brand Book Section 4: "real specifics over vague
+  superlatives"). Pulls product.metafields.fayzo.benefits, a list of single
+  line text values filled in per-product (Section 8's fill-in-the-blank
+  workflow) — renders nothing until a merchant adds real claims for the
+  product, same as the specifics block.
+{% endcomment %}
+{%- liquid
+  assign benefits = product.metafields.fayzo.benefits.value
+-%}
+{%- if benefits != blank and benefits.size > 0 -%}
+  <ul class="fayzo-benefits-list" role="list">
+    {%- for benefit in benefits -%}
+      <li class="fayzo-benefits-list__item">
+        {{- 'icon-checkmark.svg' | inline_asset_content -}}
+        <span>{{ benefit }}</span>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
