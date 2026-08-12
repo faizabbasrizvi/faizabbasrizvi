@@ -38,6 +38,32 @@
   flex-shrink: 0;
 }
 
+/* Home trust bar — plain row, no icon-tile cards (Brand Book Section 12) */
+.fayzo-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem 3.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fayzo-trust-bar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.4rem;
+  color: rgb(var(--color-foreground));
+}
+
+.fayzo-trust-bar__item svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  color: rgb(var(--color-button));
+}
+
 /* Specifics block — structured facts, not a paragraph */
 .fayzo-specifics {
   margin: 2.4rem 0;

@@ -1,0 +1,39 @@
+/* Social proof grid — plain cards, no shadows/gradients-as-decoration */
+.fayzo-social-proof__grid {
+  margin-top: 2.4rem;
+}
+
+.fayzo-social-proof__item {
+  padding: 2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  border-radius: 8px;
+}
+
+.fayzo-social-proof__item .rating {
+  margin-bottom: 1rem;
+}
+
+.fayzo-social-proof__quote {
+  margin: 0 0 1.2rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.fayzo-social-proof__name {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.fayzo-social-proof__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.fayzo-social-proof__caption {
+  margin: 1rem 0 0;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+}

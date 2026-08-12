@@ -1,0 +1,170 @@
+{% comment %}
+  Home social proof (PRD Section 4): "review highlights / UGC-style imagery."
+  Renders nothing if the merchant hasn't added real content yet — this
+  section never ships with invented customer quotes (Brand Book Section 4:
+  "honest, not hypey"; real reviews only).
+{% endcomment %}
+{{ 'fayzo-social-proof.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+      <ul class="fayzo-social-proof__grid grid grid--{{ section.blocks.size | at_most: 3 }}-col-desktop grid--2-col-tablet-down" role="list">
+        {%- for block in section.blocks -%}
+          <li class="fayzo-social-proof__item" {{ block.shopify_attributes }}>
+            {%- case block.type -%}
+              {%- when 'review' -%}
+                {%- if block.settings.rating > 0 -%}
+                  <div class="rating" role="img" aria-label="{{ block.settings.rating }} out of 5 stars">
+                    <span aria-hidden="true" class="rating-star" style="--rating: {{ block.settings.rating }}; --rating-max: 5; --rating-decimal: 0;"></span>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.quote != blank -%}
+                  <p class="fayzo-social-proof__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+                {%- endif -%}
+                {%- if block.settings.reviewer_name != blank -%}
+                  <p class="fayzo-social-proof__name">{{ block.settings.reviewer_name }}</p>
+                {%- endif -%}
+              {%- when 'image' -%}
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 700
+                    | image_tag: loading: 'lazy', class: 'fayzo-social-proof__image'
+                  }}
+                {%- endif -%}
+                {%- if block.settings.caption != blank -%}
+                  <p class="fayzo-social-proof__caption">{{ block.settings.caption }}</p>
+                {%- endif -%}
+            {%- endcase -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Social proof",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What people are saying"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review highlight",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "info": "Paste a real customer review — don't invent one (Brand Book: honest, not hypey)."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name or initials"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "UGC-style image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social proof"
+    }
+  ]
+}
+{% endschema %}

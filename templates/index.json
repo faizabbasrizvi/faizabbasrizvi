@@ -1,75 +1,83 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "trending-hero": {
+      "type": "slideshow",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide": {
+          "type": "slide",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Trending in the UAE right now",
+            "heading_size": "h0",
+            "subheading": "Curated finds. Real reviews. Fast UAE delivery.",
+            "button_label": "Shop all",
+            "link": "shopify://collections/all",
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-2"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "slide"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "auto_rotate": false
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "trust-bar": {
+      "type": "fayzo-trust-bar",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "featured-collections": {
+      "type": "collection-list",
+      "blocks": {
+        "collection-1": {
+          "type": "featured_collection",
+          "settings": {}
+        },
+        "collection-2": {
+          "type": "featured_collection",
+          "settings": {}
+        },
+        "collection-3": {
+          "type": "featured_collection",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection-1",
+        "collection-2",
+        "collection-3"
+      ],
+      "settings": {
+        "title": "Shop by category",
+        "heading_size": "h1",
         "color_scheme": "scheme-1",
-        "full_width": false,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "image_ratio": "square",
         "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "swipe_on_mobile": true
+      }
+    },
+    "social-proof": {
+      "type": "fayzo-social-proof",
+      "settings": {
+        "heading": "What people are saying",
+        "color_scheme": "scheme-1"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "trending-hero",
+    "trust-bar",
+    "featured-collections",
+    "social-proof"
   ]
 }
