@@ -40,9 +40,9 @@
         }
       },
       "block_order": [
+        "rating",
         "title",
         "benefit_statement",
-        "rating",
         "price",
         "payment_badges",
         "variant_picker",
