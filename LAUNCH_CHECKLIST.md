@@ -57,10 +57,11 @@ admin/app action that can't be done from code.
 
 ## Ongoing content workflow (Section 8/9 — per product, not one-time)
 
-- [ ] For every new product: fill in the `fayzo.benefit_statement` and
-  `fayzo.specifics` metafields (dimensions, battery life, box contents) and
-  add real image alt text — this is what keeps the product template
-  reusable without custom code per listing.
+- [ ] For every new product: fill in the `fayzo.benefit_statement`,
+  `fayzo.specifics` (dimensions, battery life, box contents), and
+  `fayzo.benefits` (checklist of specific claims — real specifics, not
+  vague superlatives) metafields, plus real image alt text — this is what
+  keeps the product template reusable without custom code per listing.
 - [ ] Photography: lifestyle-first hero shot (not white-background), 4-6
   supporting images, at least one in-use/scale-reference shot per product.
 - [ ] Unique, in-voice title tag + meta description per product/collection/
