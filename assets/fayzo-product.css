@@ -11,6 +11,14 @@
   line-height: 1.4;
 }
 
+/* Same benefit line, sized down for product cards (PRD Section 4: "not
+   just the product name" applies to collection/search grids too) */
+.fayzo-benefit-statement--card {
+  margin: 0.3rem 0 0;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
 /* Payment / delivery trust badges, directly under price */
 .fayzo-trust-badges {
   display: flex;
