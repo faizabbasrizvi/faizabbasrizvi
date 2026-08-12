@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Cash on delivery available · Free delivery in 2–4 days across the UAE",
             "text_alignment": "center",
             "color_scheme": "scheme-1",
             "link": ""
