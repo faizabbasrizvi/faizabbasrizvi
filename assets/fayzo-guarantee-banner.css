@@ -1,0 +1,12 @@
+.fayzo-guarantee-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.fayzo-guarantee-banner__heading {
+  margin: 0;
+}

@@ -1,0 +1,47 @@
+.fayzo-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.8rem 2rem;
+  margin: 2.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 108rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .fayzo-icon-grid--3-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .fayzo-icon-grid--4-col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.fayzo-icon-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.fayzo-icon-grid__item svg {
+  width: 3rem;
+  height: 3rem;
+  color: rgb(var(--color-button));
+  fill: currentColor;
+}
+
+.fayzo-icon-grid__heading {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.fayzo-icon-grid__description {
+  font-size: 1.3rem;
+  opacity: 0.75;
+  line-height: 1.5;
+}

@@ -6,16 +6,16 @@
         "slide": {
           "type": "slide",
           "settings": {
-            "heading": "Trending in the UAE right now",
+            "heading": "We Don't Sell Gadgets. We Solve Problems.",
             "heading_size": "h0",
-            "subheading": "Curated finds. Real reviews. Fast UAE delivery.",
-            "button_label": "Shop all",
+            "subheading": "Every product here started as an annoyance someone got tired of living with. We build the fix, test it hard, and back it with a return policy that actually means it.",
+            "button_label": "Shop Best Sellers",
             "link": "shopify://collections/all",
-            "box_align": "middle-center",
+            "box_align": "middle-left",
             "show_text_box": false,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-2"
+            "color_scheme": "scheme-6"
           }
         }
       },
@@ -28,56 +28,183 @@
         "auto_rotate": false
       }
     },
-    "trust-bar": {
-      "type": "fayzo-trust-bar",
-      "settings": {
-        "color_scheme": "scheme-2"
-      }
-    },
-    "featured-collections": {
-      "type": "collection-list",
+    "trust-strip": {
+      "type": "fayzo-icon-grid",
       "blocks": {
-        "collection-1": {
-          "type": "featured_collection",
-          "settings": {}
+        "delivery": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "heading": "2-4 Day UAE Delivery"
+          }
         },
-        "collection-2": {
-          "type": "featured_collection",
-          "settings": {}
+        "checkout": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "heading": "Secure Checkout"
+          }
         },
-        "collection-3": {
-          "type": "featured_collection",
-          "settings": {}
+        "returns": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "heading": "14-Day Easy Returns"
+          }
+        },
+        "tested": {
+          "type": "item",
+          "settings": {
+            "icon": "check_mark",
+            "heading": "Every Product Tested First"
+          }
         }
       },
       "block_order": [
-        "collection-1",
-        "collection-2",
-        "collection-3"
+        "delivery",
+        "checkout",
+        "returns",
+        "tested"
       ],
       "settings": {
-        "title": "Shop by category",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "featured-products": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "The Essentials",
+        "heading_size": "h1",
+        "description": "Everyday problems, actually solved.",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "why-fayzo": {
+      "type": "fayzo-icon-grid",
+      "blocks": {
+        "tested": {
+          "type": "item",
+          "settings": {
+            "icon": "check_mark",
+            "heading": "Tested before it ships",
+            "description": "Every product goes through real daily use before it's listed."
+          }
+        },
+        "honest": {
+          "type": "item",
+          "settings": {
+            "icon": "star",
+            "heading": "Honest by default",
+            "description": "No countdown timers. No fake stock warnings. Just the truth."
+          }
+        },
+        "delivery": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "heading": "Fast, tracked UAE delivery",
+            "description": "2-4 days, door to door."
+          }
+        },
+        "returns": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "heading": "14-day, no-hard-feelings returns",
+            "description": "No interrogation, no fine print."
+          }
+        }
+      },
+      "block_order": [
+        "tested",
+        "honest",
+        "delivery",
+        "returns"
+      ],
+      "settings": {
+        "heading": "Why Fayzo",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
-        "columns_desktop": 3,
-        "columns_mobile": "1",
-        "image_ratio": "square",
-        "show_view_all": true,
-        "swipe_on_mobile": true
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "brand-story": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Idea Behind Fayzo",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We got tired of stores that oversell average products with dramatic countdown timers and vague promises. Fayzo works differently — every product is tested in real daily use before it's ever listed, described honestly, and backed by a return policy we actually stand behind. If it doesn't solve the problem it claims to solve, it doesn't make the cut.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "social-proof": {
       "type": "fayzo-social-proof",
       "settings": {
-        "heading": "What people are saying",
+        "heading": "What People Are Saying",
         "color_scheme": "scheme-1"
+      }
+    },
+    "guarantee-banner": {
+      "type": "fayzo-guarantee-banner",
+      "settings": {
+        "heading": "14-Day, No Hard Feelings Returns.",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "color_scheme": "scheme-3",
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     }
   },
   "order": [
     "trending-hero",
-    "trust-bar",
-    "featured-collections",
-    "social-proof"
+    "trust-strip",
+    "featured-products",
+    "why-fayzo",
+    "brand-story",
+    "social-proof",
+    "guarantee-banner"
   ]
 }

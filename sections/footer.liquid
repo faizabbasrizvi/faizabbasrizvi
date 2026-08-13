@@ -121,6 +121,10 @@
                               width: settings.brand_image_width
                           }}
                         </div>
+                      {%- else -%}
+                        <div class="footer-block__image-wrapper" style="margin-bottom: 1.2rem;">
+                          {%- render 'brand-wordmark', tag: 'span', class: 'h2', variant: 'onplum' -%}
+                        </div>
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}
                         <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
