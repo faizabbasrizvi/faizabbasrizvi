@@ -77,7 +77,7 @@
       "settings": {
         "title": "The Essentials",
         "heading_size": "h1",
-        "description": "Everyday problems, actually solved.",
+        "description": "<p>Everyday problems, actually solved.</p>",
         "show_description": true,
         "description_style": "body",
         "collection": "all",
