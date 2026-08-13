@@ -43,6 +43,39 @@
     ]
   },
   {
+    "name": "Fayzo: brand voice",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Used on the product page's Founder Story, Testing Process, and WhatsApp CTA sections. Leave WhatsApp number blank to hide that button rather than show a dead link."
+      },
+      {
+        "type": "text",
+        "id": "fayzo_founder_name",
+        "label": "Founder name",
+        "info": "Shown as \"— [name]\" under the founder story. Leave blank to keep it anonymous (\"Founder, Fayzo\")."
+      },
+      {
+        "type": "textarea",
+        "id": "fayzo_founder_story",
+        "label": "Founder story",
+        "default": "We got tired of stores that oversell average products with dramatic countdown timers and vague promises. So we started keeping every product we sell for two weeks before it's listed — using it the way you would, daily and imperfectly — and writing down exactly what we found. If it doesn't hold up, it doesn't ship."
+      },
+      {
+        "type": "textarea",
+        "id": "fayzo_testing_process",
+        "label": "Testing process description",
+        "default": "Before anything gets listed, it lives in a real home or on a real desk for at least two weeks. We use it the way you would — daily, imperfectly — and note anything that annoys us: a strap that pinches, a clip that slips, an instruction that doesn't match reality. If it doesn't hold up, it doesn't ship. If it does, the spec sheet on this page is what we actually measured, not what a supplier told us."
+      },
+      {
+        "type": "text",
+        "id": "fayzo_whatsapp_number",
+        "label": "WhatsApp number",
+        "info": "Full international format, digits only (e.g. 971501234567 for +971 50 123 4567). Leave blank to hide the WhatsApp button everywhere."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

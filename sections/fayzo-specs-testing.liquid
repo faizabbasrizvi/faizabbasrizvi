@@ -1,0 +1,100 @@
+{% comment %}
+  Specs + testing process (Fayzo Website.dc.html section 7). Left column
+  reuses the same fayzo.specifics metaobject list already shown on the
+  main product info column (PRD Section 5) — repeated here in the design's
+  two-column layout alongside the testing-process narrative, which is a
+  site-wide theme setting (Settings > Fayzo: brand voice) rather than
+  per-product, since it's the same standard applied to every listing.
+{% endcomment %}
+{{ 'fayzo-product-sections.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign specifics = product.metafields.fayzo.specifics.value
+-%}
+{%- if specifics != blank or settings.fayzo_testing_process != blank -%}
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+    <div class="page-width fayzo-specs-testing">
+      {%- if specifics != blank and specifics.size > 0 -%}
+        <div>
+          <h2 class="{{ section.settings.heading_size }}">Specs</h2>
+          <dl class="fayzo-specs-testing__list">
+            {%- for row in specifics -%}
+              <div class="fayzo-specs-testing__row">
+                <dt>{{ row.label.value }}</dt>
+                <dd>{{ row.value.value }}</dd>
+              </div>
+            {%- endfor -%}
+          </dl>
+        </div>
+      {%- endif -%}
+      {%- if settings.fayzo_testing_process != blank -%}
+        <div>
+          <h2 class="{{ section.settings.heading_size }}">Our Testing Process</h2>
+          <p class="fayzo-specs-testing__process">{{ settings.fayzo_testing_process }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Specs + testing process",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ]
+}
+{% endschema %}

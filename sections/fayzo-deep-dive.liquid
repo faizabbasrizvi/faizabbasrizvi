@@ -1,0 +1,96 @@
+{% comment %}
+  "Benefit deep-dive" (Fayzo Website.dc.html section 4): headline + body +
+  CTA next to a secondary lifestyle image. Pulls fayzo.deep_dive_headline /
+  _body / _cta_label. The CTA scrolls back to the real add-to-cart form at
+  the top of the page (id="fayzo-product-top", set in main-product.liquid)
+  rather than duplicating the purchase form a second time on the page.
+{% endcomment %}
+{{ 'fayzo-product-sections.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign headline = product.metafields.fayzo.deep_dive_headline.value
+  assign body = product.metafields.fayzo.deep_dive_body.value
+  assign cta_label = product.metafields.fayzo.deep_dive_cta_label.value | default: 'Shop now'
+-%}
+{%- if headline != blank or body != blank -%}
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+    <div class="page-width fayzo-deep-dive">
+      <div class="fayzo-deep-dive__content">
+        {%- if headline != blank -%}
+          <h2 class="{{ section.settings.heading_size }}">{{ headline | escape }}</h2>
+        {%- endif -%}
+        {%- if body != blank -%}
+          <p class="fayzo-deep-dive__body">{{ body }}</p>
+        {%- endif -%}
+        <a href="#fayzo-product-top" class="button">{{ cta_label | escape }}</a>
+      </div>
+      {%- if product.featured_media -%}
+        <div class="fayzo-deep-dive__media">
+          {{ product.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Benefit deep-dive",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ]
+}
+{% endschema %}

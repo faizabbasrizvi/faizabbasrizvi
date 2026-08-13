@@ -1,0 +1,80 @@
+{% comment %}
+  Founder story (Fayzo Website.dc.html section 10). Site-wide content
+  (Settings > Fayzo: brand voice) rather than per-product, since it's the
+  same founder/curation story repeated across every product page.
+{% endcomment %}
+{{ 'fayzo-product-sections.css' | asset_url | stylesheet_tag }}
+{%- if settings.fayzo_founder_story != blank -%}
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+    <div class="page-width fayzo-founder-story">
+      {%- if section.settings.image != blank -%}
+        <div class="fayzo-founder-story__photo">
+          {{ section.settings.image | image_url: width: 440 | image_tag: loading: 'lazy', sizes: '220px' }}
+        </div>
+      {%- endif -%}
+      <div>
+        <div class="fayzo-founder-story__eyebrow">Why Fayzo Exists</div>
+        <p class="fayzo-founder-story__text">{{ settings.fayzo_founder_story }}</p>
+        <div class="fayzo-founder-story__name">— {{ settings.fayzo_founder_name | default: 'Founder, Fayzo' }}</div>
+      </div>
+    </div>
+  </div>
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Founder story",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Founder photo (optional)"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ]
+}
+{% endschema %}

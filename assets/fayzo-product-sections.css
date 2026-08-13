@@ -1,0 +1,399 @@
+/* Below-the-fold product page sections (Fayzo Website.dc.html sections 2-12).
+   Flat, no pill-in-pill nesting beyond the standard button radius already
+   set globally. */
+
+/* Cross-sell */
+.fayzo-cross-sell {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.fayzo-cross-sell__item {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.4rem;
+  border-radius: var(--card-corner-radius, 16px);
+  background: rgb(var(--color-background));
+}
+
+.fayzo-cross-sell__media {
+  flex-shrink: 0;
+  width: 8.4rem;
+  height: 8.4rem;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  display: block;
+}
+
+.fayzo-cross-sell__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fayzo-cross-sell__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.fayzo-cross-sell__title {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.fayzo-cross-sell__price {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.fayzo-cross-sell__view {
+  white-space: nowrap;
+}
+
+/* Real customer proof */
+.fayzo-ugc-grid {
+  list-style: none;
+  margin: 0 0 3.2rem;
+  padding: 0;
+  gap: 1.6rem;
+}
+
+.fayzo-ugc-grid__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1.4rem;
+  display: block;
+}
+
+.fayzo-review-highlight {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.fayzo-whatsapp-cta {
+  text-align: center;
+}
+
+.fayzo-whatsapp-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fayzo-whatsapp-cta__button svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: currentColor;
+}
+
+/* Benefit deep-dive */
+.fayzo-deep-dive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.2rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .fayzo-deep-dive {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fayzo-deep-dive__body {
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+
+.fayzo-deep-dive__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--card-corner-radius, 20px);
+  display: block;
+}
+
+/* Pain points */
+.fayzo-pain-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.4rem;
+}
+
+.fayzo-pain-points__item {
+  padding: 2.6rem;
+  border-radius: var(--card-corner-radius, 16px);
+  background: rgb(var(--color-background));
+}
+
+.fayzo-pain-points__title {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.fayzo-pain-points__desc {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+/* Feature grid */
+.fayzo-feature-grid {
+  list-style: none;
+  margin: 3.2rem 0 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.fayzo-feature-grid__item {
+  border-radius: var(--card-corner-radius, 16px);
+  overflow: hidden;
+  background: rgb(var(--color-background));
+}
+
+.fayzo-feature-grid__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.fayzo-feature-grid__content {
+  padding: 1.6rem;
+}
+
+.fayzo-feature-grid__title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.fayzo-feature-grid__desc {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+/* Specs + testing process */
+.fayzo-specs-testing {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .fayzo-specs-testing {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fayzo-specs-testing__list {
+  margin: 1.6rem 0 0;
+}
+
+.fayzo-specs-testing__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.15);
+  font-size: 1.3rem;
+}
+
+.fayzo-specs-testing__row dt {
+  font-weight: 700;
+}
+
+.fayzo-specs-testing__row dd {
+  margin: 0;
+  text-align: right;
+  max-width: 60%;
+}
+
+.fayzo-specs-testing__process {
+  margin: 1.6rem 0 0;
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+
+/* Checklist + CTA */
+.fayzo-checklist-cta {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fayzo-checklist-cta__list {
+  list-style: none;
+  margin: 0 0 3.2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+}
+
+.fayzo-checklist-cta__list li {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  font-size: 1.5rem;
+}
+
+.fayzo-checklist-cta__list--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2.4rem;
+}
+
+.fayzo-checklist-cta__list--inline li {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.fayzo-checklist-cta__list svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  fill: currentColor;
+  color: rgb(var(--color-button));
+}
+
+/* Founder story */
+.fayzo-founder-story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+  align-items: center;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 750px) {
+  .fayzo-founder-story {
+    grid-template-columns: 22rem 1fr;
+  }
+}
+
+.fayzo-founder-story__photo img {
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.fayzo-founder-story__eyebrow {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.fayzo-founder-story__text {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  margin: 0 0 1.2rem;
+}
+
+.fayzo-founder-story__name {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+/* Comparison table */
+.fayzo-comparison {
+  max-width: 80rem;
+  margin: 0 auto 6.4rem;
+}
+
+.fayzo-comparison__table {
+  margin-top: 3.2rem;
+  border-radius: var(--card-corner-radius, 16px);
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.fayzo-comparison__row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  padding: 1.4rem 2rem;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+  gap: 1rem;
+}
+
+.fayzo-comparison__row:last-child {
+  border-bottom: none;
+}
+
+.fayzo-comparison__row-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.fayzo-comparison__fayzo-label,
+.fayzo-comparison__fayzo-value {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: rgb(var(--color-button));
+}
+
+.fayzo-comparison__generic-label,
+.fayzo-comparison__generic-value {
+  text-align: center;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* FAQ */
+.fayzo-faq {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.fayzo-faq__list {
+  margin-top: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.fayzo-faq__item {
+  border-radius: var(--card-corner-radius, 14px);
+  background: rgb(var(--color-background));
+  padding: 0 2.2rem;
+}
+
+.fayzo-faq__item summary {
+  padding: 1.8rem 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.fayzo-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.fayzo-faq__answer {
+  padding: 0 0 1.8rem;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}

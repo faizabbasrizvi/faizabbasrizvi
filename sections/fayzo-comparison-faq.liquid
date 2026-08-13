@@ -1,0 +1,155 @@
+{% comment %}
+  Comparison table + FAQ (Fayzo Website.dc.html section 11). Comparison
+  rows restate Brand Book Section 3's competitive positioning (generic
+  dropship vs. Fayzo) - not fabricated, already-approved brand copy, so
+  it's the same 5 rows on every product, with the category label pulled
+  from fayzo.comparison_category. FAQ combines product-specific entries
+  (fayzo.faq_extra) with the same generic shipping/returns/COD questions
+  already answered on the FAQ page and the product info accordion, using
+  native <details> instead of the source prototype's JS toggle.
+{% endcomment %}
+{{ 'fayzo-product-sections.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign faq_extra = product.metafields.fayzo.faq_extra.value
+  assign category = product.metafields.fayzo.comparison_category.value | default: 'dropship products'
+-%}
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="fayzo-comparison">
+      <h2 class="{{ section.settings.heading_size }}" style="text-align:center;">
+        Fayzo vs. Generic {{ category }}
+      </h2>
+      <div class="fayzo-comparison__table">
+        <div class="fayzo-comparison__row fayzo-comparison__row--head">
+          <div></div>
+          <div class="fayzo-comparison__fayzo-label">Fayzo</div>
+          <div class="fayzo-comparison__generic-label">Generic {{ category }}</div>
+        </div>
+        {%- for row in section.blocks -%}
+          <div class="fayzo-comparison__row">
+            <div class="fayzo-comparison__row-label">{{ row.settings.label }}</div>
+            <div class="fayzo-comparison__fayzo-value">{{ row.settings.fayzo_value }}</div>
+            <div class="fayzo-comparison__generic-value">{{ row.settings.generic_value }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="fayzo-faq">
+      <h2 class="{{ section.settings.heading_size }}" style="text-align:center;">Frequently Asked Questions</h2>
+      <div class="fayzo-faq__list">
+        {%- for faq in faq_extra -%}
+          <details class="fayzo-faq__item">
+            <summary>{{ faq.question.value }}</summary>
+            <div class="fayzo-faq__answer">{{ faq.answer.value }}</div>
+          </details>
+        {%- endfor -%}
+        <details class="fayzo-faq__item">
+          <summary>How long does delivery take?</summary>
+          <div class="fayzo-faq__answer">{{ settings.fayzo_delivery_promise | default: '2–4 days across the UAE. No multi-week wait.' }}</div>
+        </details>
+        <details class="fayzo-faq__item">
+          <summary>What if it doesn't work for me?</summary>
+          <div class="fayzo-faq__answer">Didn't work out? No hard feelings — send it back within 14 days for a refund.</div>
+        </details>
+        <details class="fayzo-faq__item">
+          <summary>Do you offer Cash on Delivery?</summary>
+          <div class="fayzo-faq__answer">
+            {%- if settings.fayzo_show_cod_badge -%}
+              Yes — COD is available at checkout.
+              {%- if settings.fayzo_show_tabby_badge or settings.fayzo_show_tamara_badge %} Tabby and Tamara may also be available.{% endif -%}
+            {%- else -%}
+              Card and other online payment methods are available at checkout.
+            {%- endif -%}
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Comparison + FAQ",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Row label" },
+        { "type": "text", "id": "fayzo_value", "label": "Fayzo column" },
+        { "type": "text", "id": "generic_value", "label": "Generic column" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison + FAQ",
+      "blocks": [
+        { "type": "comparison_row", "settings": { "label": "Tested before it ships", "fayzo_value": "Used and tested first", "generic_value": "Sight-unseen, dropshipped" } },
+        { "type": "comparison_row", "settings": { "label": "Sizing & fit info", "fayzo_value": "Honest measurements", "generic_value": "Vague or missing sizing" } },
+        { "type": "comparison_row", "settings": { "label": "Returns", "fayzo_value": "14-day, no interrogation", "generic_value": "Often no return policy" } },
+        { "type": "comparison_row", "settings": { "label": "Delivery", "fayzo_value": "2–4 days, UAE-based", "generic_value": "2–4 weeks, overseas" } },
+        { "type": "comparison_row", "settings": { "label": "Sales tactics", "fayzo_value": "No fake urgency, ever", "generic_value": "Countdown timers & stock warnings" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

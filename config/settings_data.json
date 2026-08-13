@@ -205,7 +205,11 @@
       "fayzo_show_cod_badge": true,
       "fayzo_show_tabby_badge": false,
       "fayzo_show_tamara_badge": false,
-      "fayzo_delivery_promise": "2\u20134 days across the UAE"
+      "fayzo_delivery_promise": "2\u20134 days across the UAE",
+      "fayzo_founder_name": "",
+      "fayzo_founder_story": "We got tired of stores that oversell average products with dramatic countdown timers and vague promises. So we started keeping every product we sell for two weeks before it's listed \u2014 using it the way you would, daily and imperfectly \u2014 and writing down exactly what we found. If it doesn't hold up, it doesn't ship.",
+      "fayzo_testing_process": "Before anything gets listed, it lives in a real home or on a real desk for at least two weeks. We use it the way you would \u2014 daily, imperfectly \u2014 and note anything that annoys us: a strap that pinches, a clip that slips, an instruction that doesn't match reality. If it doesn't hold up, it doesn't ship. If it does, the spec sheet on this page is what we actually measured, not what a supplier told us.",
+      "fayzo_whatsapp_number": ""
     }
   }
 }
