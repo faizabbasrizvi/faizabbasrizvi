@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300">
+  <title>FAYZO — Concept 2</title>
+  <desc>Fayzo wordmark in Deep Plum with a Vivid Magenta A and underline.</desc>
+  <g id="fayzo-wordmark" aria-label="FAYZO">
+    <text x="500" y="175" text-anchor="middle" font-family="Poppins, Montserrat, Arial, sans-serif" font-size="142" font-weight="800" letter-spacing="-6" fill="#33057E">F<tspan fill="#A004B9">A</tspan>YZO</text>
+    <path d="M 420 210 Q 500 226 580 210" fill="none" stroke="#A004B9" stroke-width="12" stroke-linecap="round"></path>
+  </g>
+</svg>

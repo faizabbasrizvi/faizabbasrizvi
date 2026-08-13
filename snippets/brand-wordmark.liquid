@@ -1,18 +1,30 @@
 {% comment %}
-  Renders the Fayzo wordmark as styled text (Brand Book Section 5: bold
-  all-caps "FAYZO", terracotta accent carried onto the "A").
-
-  Interim stand-in for the approved logo file until it's uploaded via
-  Settings > Logo in the theme editor — the moment settings.logo is set,
-  every place that calls this snippet already falls back to the real
-  image instead (see header.liquid, main-password-header.liquid).
+  Renders the real Fayzo v2.1 wordmark (Brand Book Section 6, locked
+  Concept 2) as a theme-bundled SVG asset — used wherever settings.logo
+  is blank, i.e. everywhere until a merchant uploads their own override
+  via Settings > Logo.
 
   Accepts:
   - class: additional class(es) for the wrapping element
   - tag: wrapping HTML tag (default span)
+  - variant: 'default' (Deep Plum wordmark, for light backgrounds) or
+    'onplum' (white wordmark, for the Deep Plum header/footer). Default
+    'default'.
 {% endcomment %}
 {%- liquid
   assign tag = tag | default: 'span'
-  assign wordmark = 'FAYZO'
+  assign variant = variant | default: 'default'
+  if variant == 'onplum'
+    assign logo_file = 'fayzo-logo-onplum.svg'
+  else
+    assign logo_file = 'fayzo-logo.svg'
+  endif
 -%}
-<{{ tag }} class="brand-wordmark {{ class }}">{%- for character in wordmark -%}{%- if character == 'A' -%}<span class="brand-wordmark__accent">A</span>{%- else -%}{{ character }}{%- endif -%}{%- endfor -%}</{{ tag }}>
+<{{ tag }} class="brand-wordmark {{ class }}">
+  <img
+    src="{{ logo_file | asset_url }}"
+    alt="Fayzo"
+    height="28"
+    style="height: 1em; width: auto; display: block;"
+  >
+</{{ tag }}>
