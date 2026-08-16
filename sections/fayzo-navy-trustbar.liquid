@@ -1,0 +1,37 @@
+{% comment %} Four-column trust strip directly under the hero (2b). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-trustbar">
+  {%- for block in section.blocks -%}
+    <div class="fz-trustbar__item" {{ block.shopify_attributes }}>
+      <div class="fz-trustbar__title">{{ block.settings.title }}</div>
+      <div class="fz-trustbar__desc">{{ block.settings.description }}</div>
+    </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy trust bar",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo navy trust bar",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Nothing listed sight-unseen", "description": "We buy one, use it, then decide." } },
+        { "type": "item", "settings": { "title": "Stocked in Dubai", "description": "2–4 days anywhere in the UAE." } },
+        { "type": "item", "settings": { "title": "Cash on delivery", "description": "Or Tabby, or Apple Pay. Your call." } },
+        { "type": "item", "settings": { "title": "A person on WhatsApp", "description": "Median reply, 24 minutes." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

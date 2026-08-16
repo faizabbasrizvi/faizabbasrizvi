@@ -1,0 +1,76 @@
+{% comment %}
+  "Fayzo vs. the two ways you usually buy this" comparison table. Shared
+  markup between the homepage (2b) and the product page (2a) — content
+  and heading are configurable per-instance via blocks/settings.
+{% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-section{% if section.settings.hide_on_mobile %} fz-only-desktop{% endif %}">
+  <div class="fz-container">
+    <h2 class="fz-h2">{{ section.settings.heading }}</h2>
+    <div class="fz-compare">
+      <div class="fz-compare__table">
+        <div class="fz-compare__row fz-compare__row--head">
+          <div></div>
+          <div>Fayzo</div>
+          <div>A dropship store</div>
+          <div>A big marketplace</div>
+        </div>
+        {%- for block in section.blocks -%}
+          <div class="fz-compare__row">
+            <div>{{ block.settings.label }}</div>
+            <div>
+              {%- if block.settings.fayzo == 'yes' -%}<span class="fz-compare__yes">&#10003;</span>
+              {%- else -%}<span class="fz-compare__no">&#10007;</span>{%- endif -%}
+            </div>
+            <div>
+              {%- if block.settings.dropship == 'yes' -%}<span class="fz-compare__yes">&#10003;</span>
+              {%- elsif block.settings.dropship == 'note' -%}<span class="fz-compare__note">{{ block.settings.dropship_note }}</span>
+              {%- else -%}<span class="fz-compare__no">&#10007;</span>{%- endif -%}
+            </div>
+            <div>
+              {%- if block.settings.marketplace == 'yes' -%}<span class="fz-compare__yes">&#10003;</span>
+              {%- elsif block.settings.marketplace == 'note' -%}<span class="fz-compare__note">{{ block.settings.marketplace_note }}</span>
+              {%- else -%}<span class="fz-compare__no">&#10007;</span>{%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy compare",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Fayzo vs. the two ways you usually buy this" },
+    { "type": "checkbox", "id": "hide_on_mobile", "label": "Hide on mobile", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Row label" },
+        { "type": "select", "id": "fayzo", "label": "Fayzo column", "default": "yes", "options": [ { "value": "yes", "label": "Yes" }, { "value": "no", "label": "No" } ] },
+        { "type": "select", "id": "dropship", "label": "Dropship column", "default": "no", "options": [ { "value": "yes", "label": "Yes" }, { "value": "no", "label": "No" }, { "value": "note", "label": "Note" } ] },
+        { "type": "text", "id": "dropship_note", "label": "Dropship note (if selected)" },
+        { "type": "select", "id": "marketplace", "label": "Marketplace column", "default": "no", "options": [ { "value": "yes", "label": "Yes" }, { "value": "no", "label": "No" }, { "value": "note", "label": "Note" } ] },
+        { "type": "text", "id": "marketplace_note", "label": "Marketplace note (if selected)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo navy compare",
+      "blocks": [
+        { "type": "row", "settings": { "label": "Someone used it before it was listed", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        { "type": "row", "settings": { "label": "The photos are of the item you receive", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "depends on the seller" } },
+        { "type": "row", "settings": { "label": "Tells you who should not buy it", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        { "type": "row", "settings": { "label": "A named person answers your message", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "a chatbot" } },
+        { "type": "row", "settings": { "label": "Delivered in 2–4 days from inside the UAE", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,210 +1,177 @@
 {
   "sections": {
-    "trending-hero": {
-      "type": "slideshow",
+    "hero": {
+      "type": "fayzo-navy-hero",
+      "settings": {
+        "trust_label": "Trusted by 9,000+ UAE shoppers",
+        "heading": "We tried it first. Then we decided whether to sell it.",
+        "subheading": "Eleven things that fix one specific annoyance. Real photos, an honest verdict on each, and a courier from Dubai that turns up in 2–4 days.",
+        "primary_label": "Shop this week's picks",
+        "secondary_label": "How we test",
+        "secondary_link": "#fz-how-we-test"
+      }
+    },
+    "trust-bar": {
+      "type": "fayzo-navy-trustbar",
       "blocks": {
-        "slide": {
-          "type": "slide",
-          "settings": {
-            "heading": "We Don't Sell Gadgets. We Solve Problems.",
-            "heading_size": "h0",
-            "subheading": "Every product here started as an annoyance someone got tired of living with. We build the fix, test it hard, and back it with a return policy that actually means it.",
-            "button_label": "Shop Best Sellers",
-            "link": "shopify://collections/all",
-            "box_align": "middle-left",
-            "show_text_box": false,
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-6"
-          }
+        "item-1": {
+          "type": "item",
+          "settings": { "title": "Nothing listed sight-unseen", "description": "We buy one, use it, then decide." }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": { "title": "Stocked in Dubai", "description": "2–4 days anywhere in the UAE." }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": { "title": "Cash on delivery", "description": "Or Tabby, or Apple Pay. Your call." }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": { "title": "A person on WhatsApp", "description": "Median reply, 24 minutes." }
         }
       },
-      "block_order": [
-        "slide"
-      ],
+      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+    },
+    "shelf": {
+      "type": "fayzo-navy-shelf",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "auto_rotate": false
+        "heading": "On the shelf this week",
+        "subheading": "Every one has a verdict. When something stops earning its place, it goes.",
+        "view_all_label": "See all 11",
+        "products_to_show": 4
       }
     },
-    "trust-strip": {
-      "type": "fayzo-icon-grid",
+    "shop-by": {
+      "type": "fayzo-navy-shopby",
       "blocks": {
-        "delivery": {
-          "type": "item",
-          "settings": {
-            "icon": "truck",
-            "heading": "2-4 Day UAE Delivery"
-          }
-        },
-        "checkout": {
-          "type": "item",
-          "settings": {
-            "icon": "lock",
-            "heading": "Secure Checkout"
-          }
-        },
-        "returns": {
-          "type": "item",
-          "settings": {
-            "icon": "return",
-            "heading": "14-Day Easy Returns"
-          }
-        },
-        "tested": {
-          "type": "item",
-          "settings": {
-            "icon": "check_mark",
-            "heading": "Every Product Tested First"
-          }
-        }
+        "p1": { "type": "problem", "settings": { "title": "My back hurts by 4pm", "meta": "3 products · from AED 89" } },
+        "p2": { "type": "problem", "settings": { "title": "The AC dries me out", "meta": "2 products · from AED 89" } },
+        "p3": { "type": "problem", "settings": { "title": "I crash at 3pm", "meta": "2 products · from AED 79" } },
+        "p4": { "type": "problem", "settings": { "title": "My desk is a mess", "meta": "2 products · from AED 65" } },
+        "p5": { "type": "problem", "settings": { "title": "I sleep badly", "meta": "2 products · from AED 75" } },
+        "cta": { "type": "cta", "settings": { "label": "Tell us what to test next" } }
       },
-      "block_order": [
-        "delivery",
-        "checkout",
-        "returns",
-        "tested"
-      ],
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "cta"],
       "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "heading": "Shop by the thing that's annoying you",
+        "subheading": "People arrive with a problem, not a product. The catalog is organised that way."
       }
     },
-    "featured-products": {
-      "type": "featured-collection",
+    "spotlight": {
+      "type": "fayzo-navy-spotlight",
       "settings": {
-        "title": "The Essentials",
-        "heading_size": "h1",
-        "description": "<p>Everyday problems, actually solved.</p>",
-        "show_description": true,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": true,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 56,
-        "padding_bottom": 56
+        "eyebrow": "This week's pick · 212 reviews",
+        "fallback_title": "Posture Fix Belt",
+        "description": "We tested five. Four dug into the armpits within an hour, which is why they end up in a drawer. This one spreads the pull across the shoulder blades, and we kept wearing it after the test ended.",
+        "tier_1_label": "One",
+        "tier_2_label": "Two — office and home",
+        "tier_2_price": "AED 219",
+        "tier_2_save": "save AED 39",
+        "cta_note": "Arrives Sunday 17 Aug\nFree delivery on the 2-pack"
       }
     },
-    "why-fayzo": {
-      "type": "fayzo-icon-grid",
+    "compare": {
+      "type": "fayzo-navy-compare",
       "blocks": {
-        "tested": {
-          "type": "item",
-          "settings": {
-            "icon": "check_mark",
-            "heading": "Tested before it ships",
-            "description": "Every product goes through real daily use before it's listed."
-          }
-        },
-        "honest": {
-          "type": "item",
-          "settings": {
-            "icon": "star",
-            "heading": "Honest by default",
-            "description": "No countdown timers. No fake stock warnings. Just the truth."
-          }
-        },
-        "delivery": {
-          "type": "item",
-          "settings": {
-            "icon": "truck",
-            "heading": "Fast, tracked UAE delivery",
-            "description": "2-4 days, door to door."
-          }
-        },
-        "returns": {
-          "type": "item",
-          "settings": {
-            "icon": "return",
-            "heading": "14-day, no-hard-feelings returns",
-            "description": "No interrogation, no fine print."
-          }
-        }
+        "r1": { "type": "row", "settings": { "label": "Someone used it before it was listed", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r2": { "type": "row", "settings": { "label": "The photos are of the item you receive", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "depends on the seller" } },
+        "r3": { "type": "row", "settings": { "label": "Tells you who should not buy it", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r4": { "type": "row", "settings": { "label": "A named person answers your message", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "a chatbot" } },
+        "r5": { "type": "row", "settings": { "label": "Delivered in 2–4 days from inside the UAE", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } }
       },
-      "block_order": [
-        "tested",
-        "honest",
-        "delivery",
-        "returns"
-      ],
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
       "settings": {
-        "heading": "Why Fayzo",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
+        "heading": "Fayzo vs. the two ways you usually buy this"
       }
     },
-    "brand-story": {
-      "type": "rich-text",
+    "steps": {
+      "type": "fayzo-navy-steps",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "The Idea Behind Fayzo",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>We got tired of stores that oversell average products with dramatic countdown timers and vague promises. Fayzo works differently — every product is tested in real daily use before it's ever listed, described honestly, and backed by a return policy we actually stand behind. If it doesn't solve the problem it claims to solve, it doesn't make the cut.</p>"
-          }
-        }
+        "s1": { "type": "step", "settings": { "number": "01", "title": "We find a problem people keep repeating", "description": "Usually straight out of customer messages, sometimes from whatever is going round on TikTok." } },
+        "s2": { "type": "step", "settings": { "number": "02", "title": "We buy three to five and live with them", "description": "Two to three weeks in a normal working week. Not a lab, not an afternoon of unboxing." } },
+        "s3": { "type": "step", "settings": { "number": "03", "title": "One earns the shelf, or none do", "description": "Four categories are empty because nothing we could source was good enough. We publish those too." } }
       },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "block_order": ["s1", "s2", "s3"]
+    },
+    "customer-photos": {
+      "type": "fayzo-navy-customer-photos",
+      "blocks": {
+        "ph1": { "type": "photo" },
+        "ph2": { "type": "photo" },
+        "ph3": { "type": "photo" },
+        "ph4": { "type": "photo" },
+        "ph5": { "type": "photo" },
+        "vid": { "type": "video" }
+      },
+      "block_order": ["ph1", "ph2", "ph3", "ph4", "ph5", "vid"],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "padding_top": 64,
-        "padding_bottom": 64
+        "heading": "Real customers, real desks"
       }
     },
-    "social-proof": {
-      "type": "fayzo-social-proof",
+    "reviews": {
+      "type": "fayzo-navy-reviews",
+      "blocks": {
+        "rev1": { "type": "review", "settings": { "stars": 5, "quote": "Ordered Sunday night, arrived Tuesday in Al Barsha. I kept waiting for the catch.", "name": "Hessa", "location": "Dubai" } },
+        "rev2": { "type": "review", "settings": { "stars": 4, "quote": "The page said the strap runs small, so I sized up and it fit. Nobody else tells you that.", "name": "Vikram", "location": "Sharjah" } },
+        "rev3": { "type": "review", "settings": { "stars": 5, "quote": "Asked a question on WhatsApp at 9pm and a human replied. Bought two more since.", "name": "Mariam", "location": "Abu Dhabi" } }
+      },
+      "block_order": ["rev1", "rev2", "rev3"],
       "settings": {
-        "heading": "What People Are Saying",
-        "color_scheme": "scheme-1"
+        "heading": "4.7 across 806 reviews. The three-stars stay up.",
+        "link_label": "Read all reviews",
+        "show_rating_card": true,
+        "rating_score": "4.7",
+        "rating_count": "806 verified orders",
+        "rating_breakdown": "76,16,5,2,1",
+        "footnote": "31% of customers order a second time within 60 days."
       }
     },
-    "guarantee-banner": {
-      "type": "fayzo-guarantee-banner",
+    "faq-trust": {
+      "type": "fayzo-navy-faq-trust",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "How do I know this isn't another dropship store?", "answer": "Our stock sits in Dubai Investment Park, which is why every product page shows a delivery date rather than a two-to-four-week range. The photos are shot in our office, so reverse image search finds them nowhere else. And the licence number in the footer is real — 1148392, registered in Dubai." } },
+        "q2": { "type": "faq", "settings": { "question": "Can I pay cash when it arrives?", "answer": "Yes — cash on delivery is available at checkout, alongside Tabby, Apple Pay and card." } },
+        "q3": { "type": "faq", "settings": { "question": "How long does delivery actually take?", "answer": "2–4 days across the UAE, from stock already held in Dubai." } },
+        "q4": { "type": "faq", "settings": { "question": "What if the thing doesn't work for me?", "answer": "Send it back within 14 days for a full refund — we pay the return courier." } },
+        "q5": { "type": "faq", "settings": { "question": "Why only eleven products?", "answer": "Because that's how many have earned the shelf. We publish the categories where nothing passed too." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": {
-        "heading": "14-Day, No Hard Feelings Returns.",
-        "button_label": "Shop Now",
-        "button_link": "shopify://collections/all",
-        "color_scheme": "scheme-3",
-        "padding_top": 56,
-        "padding_bottom": 56
+        "heading": "Questions people ask before their first order",
+        "trust_heading": "14 days, and we pay the courier",
+        "person_name": "Reem, who does the testing",
+        "quote": "I would rather you send it back than keep something that does not help. Message me on WhatsApp and I will book the pickup myself — you do not need a reason and I will not ask for one.",
+        "check_1": "Full refund within 14 days, no reason needed",
+        "check_2": "Refuse the parcel at the door and pay nothing",
+        "check_3": "Cash on delivery, Tabby, Apple Pay or card",
+        "check_4": "WhatsApp 04 555 0180 · median reply 24 minutes"
+      }
+    },
+    "newsletter-whatsapp": {
+      "type": "fayzo-navy-newsletter-whatsapp",
+      "settings": {
+        "newsletter_heading": "One email a week. One product.",
+        "newsletter_text": "What we tested, what we rejected, and what it costs. Unsubscribe in one click.",
+        "newsletter_fine_print": "4,100 subscribers · 38% open rate",
+        "whatsapp_heading": "Or just ask us",
+        "whatsapp_text": "Describe the annoyance and we will tell you which of the eleven helps, or that none of them do.",
+        "email": "hello@fayzo.ae",
+        "whatsapp_fine_print": "Sun–Thu 9am–6pm · median reply 24 minutes"
       }
     }
   },
   "order": [
-    "trending-hero",
-    "trust-strip",
-    "featured-products",
-    "why-fayzo",
-    "brand-story",
-    "social-proof",
-    "guarantee-banner"
+    "hero",
+    "trust-bar",
+    "shelf",
+    "shop-by",
+    "spotlight",
+    "compare",
+    "steps",
+    "customer-photos",
+    "reviews",
+    "faq-trust",
+    "newsletter-whatsapp"
   ]
 }

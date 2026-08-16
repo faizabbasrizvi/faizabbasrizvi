@@ -1,0 +1,101 @@
+{% comment %}
+  Reviews summary (rating card + review cards). Shared between homepage
+  (2b: 4.7 across 806 reviews) and product page (2a: 212 reviews, no
+  rating-breakdown card) via the show_rating_card setting.
+{% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-section{% if section.settings.hide_on_mobile %} fz-only-desktop{% endif %}" id="fz-reviews">
+  <div class="fz-container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <h2 class="fz-h2">{{ section.settings.heading }}</h2>
+      <a href="#" style="font:700 13px/1 var(--fz-sans);color:var(--fz-navy);text-decoration:underline">{{ section.settings.link_label }}</a>
+    </div>
+    <div class="fz-reviews-summary">
+      {%- if section.settings.show_rating_card -%}
+        <div class="fz-rating-card">
+          <div class="fz-rating-card__score">
+            {{ section.settings.rating_score }}
+            <span class="fz-stars" style="letter-spacing:1.5px;font-size:12px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="fz-rating-card__count">{{ section.settings.rating_count }}</div>
+          <div class="fz-rating-bars">
+            {%- assign pcts = section.settings.rating_breakdown | split: ',' -%}
+            {%- for pct in pcts -%}
+              {%- assign star = 5 | minus: forloop.index0 -%}
+              <div class="fz-rating-bar">
+                {{ star }}
+                <div class="fz-rating-bar__track"><div class="fz-rating-bar__fill" style="width:{{ pct }}%"></div></div>
+                {{ pct }}%
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="fz-rating-card__footnote">{{ section.settings.footnote }}</div>
+        </div>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        <div class="fz-review-card">
+          <div class="fz-stars">
+            {%- for i in (1..5) -%}
+              {%- if i <= block.settings.stars -%}&#9733;{%- else -%}&#9734;{%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- if block.settings.title != blank -%}
+            <div class="fz-review-card__title">{{ block.settings.title }}</div>
+          {%- endif -%}
+          <p>&ldquo;{{ block.settings.quote }}&rdquo;</p>
+          <div class="fz-review-card__meta">
+            {%- if block.settings.avatar != blank -%}
+              <div class="fz-review-card__avatar">{{ block.settings.avatar | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.name }}</div>
+            {%- endif -%}
+            <div>{{ block.settings.name }} &middot; {{ block.settings.location }}<br>{{ block.settings.tag | default: 'verified order' }}</div>
+          </div>
+          {%- if block.settings.reply != blank -%}
+            <div class="fz-review-card__reply"><strong>Fayzo replied:</strong> {{ block.settings.reply }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy reviews",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "4.7 across 806 reviews. The three-stars stay up." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Read all reviews" },
+    { "type": "checkbox", "id": "show_rating_card", "label": "Show rating-breakdown card", "default": true },
+    { "type": "checkbox", "id": "hide_on_mobile", "label": "Hide on mobile", "default": false },
+    { "type": "text", "id": "rating_score", "label": "Score", "default": "4.7" },
+    { "type": "text", "id": "rating_count", "label": "Count label", "default": "806 verified orders" },
+    { "type": "text", "id": "rating_breakdown", "label": "5,4,3,2,1 star percentages (comma separated)", "default": "76,16,5,2,1" },
+    { "type": "text", "id": "footnote", "label": "Footnote", "default": "31% of customers order a second time within 60 days." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "min": 1, "max": 5, "step": 1, "default": 5, "label": "Stars" },
+        { "type": "text", "id": "title", "label": "Title (optional)" },
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "image_picker", "id": "avatar", "label": "Avatar" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "text", "id": "tag", "label": "Tag", "default": "verified order" },
+        { "type": "textarea", "id": "reply", "label": "Fayzo reply (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo navy reviews",
+      "blocks": [
+        { "type": "review", "settings": { "stars": 5, "quote": "Ordered Sunday night, arrived Tuesday in Al Barsha. I kept waiting for the catch.", "name": "Hessa", "location": "Dubai" } },
+        { "type": "review", "settings": { "stars": 4, "quote": "The page said the strap runs small, so I sized up and it fit. Nobody else tells you that.", "name": "Vikram", "location": "Sharjah" } },
+        { "type": "review", "settings": { "stars": 5, "quote": "Asked a question on WhatsApp at 9pm and a human replied. Bought two more since.", "name": "Mariam", "location": "Abu Dhabi" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

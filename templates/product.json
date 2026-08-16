@@ -3,245 +3,167 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": {
-          "type": "title"
+        "cs1": {
+          "type": "crosssell_item",
+          "settings": { "fallback_title": "Lumbar Wedge" }
         },
-        "benefit_statement": {
-          "type": "benefit_statement"
+        "cs2": {
+          "type": "crosssell_item",
+          "settings": { "fallback_title": "Cable Nest" }
         },
-        "rating": {
-          "type": "rating"
+        "ci1": {
+          "type": "checklist_item",
+          "settings": { "title": "Straps that don't bite", "description": "Padded where the others use bare webbing. This is the whole reason we kept it." }
         },
-        "price": {
-          "type": "price"
+        "ci2": {
+          "type": "checklist_item",
+          "settings": { "title": "Invisible under a shirt", "description": "Fine under a polo or oxford. It does show through thin linen." }
         },
-        "payment_badges": {
-          "type": "payment_badges"
+        "ci3": {
+          "type": "checklist_item",
+          "settings": { "title": "Washable, and it survived it", "description": "Six machine washes in our test. No fraying, no loss of tension." }
         },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
+        "ci4": {
+          "type": "checklist_item",
+          "settings": { "title": "One-handed to fasten", "description": "You can put it on at your desk without standing up or asking for help." }
         },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "trust_row": {
-          "type": "icon-with-text",
-          "settings": {
-            "layout": "horizontal",
-            "icon_1": "box",
-            "heading_1": "Curated finds",
-            "icon_2": "star",
-            "heading_2": "Real reviews",
-            "icon_3": "truck",
-            "heading_3": "Fast UAE delivery"
-          }
-        },
-        "benefits_list": {
-          "type": "benefits_list"
-        },
-        "specifics": {
-          "type": "specifics"
+        "ci5": {
+          "type": "checklist_item",
+          "settings": { "title": "Loud velcro", "description": "The one thing we'd change. Don't adjust it in a silent meeting room." }
         }
       },
-      "block_order": [
-        "rating",
-        "title",
-        "benefit_statement",
-        "price",
-        "payment_badges",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "trust_row",
-        "benefits_list",
-        "specifics"
-      ],
+      "block_order": ["cs1", "cs2", "ci1", "ci2", "ci3", "ci4", "ci5"],
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_position": "left",
-        "gallery_layout": "stacked",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "crosssell_heading": "Complete the desk fix",
+        "crosssell_subheading": "Added with the belt by most buyers · 20% off when bought together",
+        "problem_heading": "Your chair is fine. Nine hours in it is the problem.",
+        "problem_text_1": "By mid-afternoon your shoulders round forward, your neck follows, and the ache between your shoulder blades sets in. Stretching at 6pm undoes about an hour of it.",
+        "problem_text_2": "The belt works as a reminder, not a brace. Twenty minutes a day of being held in the right position is enough for your back to start holding itself.",
+        "checklist_heading": "Five things we checked, so you don't have to",
+        "stats_heading": "We gave it to 47 people for two weeks. Here is all of it."
       }
     },
-    "cross-sell": {
-      "type": "fayzo-cross-sell",
-      "settings": {
-        "heading": "Complete your kit",
-        "heading_size": "h2",
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "real-customer-proof": {
-      "type": "fayzo-real-customer-proof",
-      "settings": {
-        "heading": "Real Customers, Real Use",
-        "heading_size": "h1",
-        "color_scheme": "scheme-3",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "deep-dive": {
-      "type": "fayzo-deep-dive",
-      "settings": {
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "pain-points": {
-      "type": "fayzo-pain-points",
-      "settings": {
-        "heading": "Sound familiar?",
-        "heading_size": "h1",
-        "color_scheme": "scheme-4",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "feature-grid": {
-      "type": "fayzo-feature-grid",
-      "settings": {
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "specs-testing": {
-      "type": "fayzo-specs-testing",
-      "settings": {
-        "heading_size": "h2",
-        "color_scheme": "scheme-2",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "checklist-cta-mid": {
-      "type": "fayzo-checklist-cta",
-      "settings": {
-        "heading": "Why [product]?",
-        "heading_size": "h1",
-        "layout": "stacked",
-        "button_label": "Add to Cart",
-        "color_scheme": "scheme-3",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "founder-story": {
-      "type": "fayzo-founder-story",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
-    "comparison-faq": {
-      "type": "fayzo-comparison-faq",
+    "compare": {
+      "type": "fayzo-navy-compare",
       "blocks": {
-        "row-1": {
-          "type": "comparison_row",
+        "r1": { "type": "row", "settings": { "label": "Someone used it before it was listed", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r2": { "type": "row", "settings": { "label": "The photos are of the item you receive", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "depends on the seller" } },
+        "r3": { "type": "row", "settings": { "label": "Stock is already in the UAE", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } },
+        "r4": { "type": "row", "settings": { "label": "Tells you who should not buy it", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r5": { "type": "row", "settings": { "label": "A named person answers your message", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "a chatbot" } },
+        "r6": { "type": "row", "settings": { "label": "No countdown timers or invented \"was\" prices", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"],
+      "settings": {
+        "heading": "Fayzo vs. the two ways you usually buy this",
+        "hide_on_mobile": true
+      }
+    },
+    "reviews": {
+      "type": "fayzo-navy-reviews",
+      "blocks": {
+        "rev1": {
+          "type": "review",
           "settings": {
-            "label": "Tested before it ships",
-            "fayzo_value": "Used and tested first",
-            "generic_value": "Sight-unseen, dropshipped"
+            "stars": 5,
+            "title": "Sized up as advised",
+            "quote": "Chest is 108cm so I took the L/XL. Four days at the office and the 4pm ache is gone.",
+            "name": "Vikram",
+            "location": "Sharjah"
           }
         },
-        "row-2": {
-          "type": "comparison_row",
+        "rev2": {
+          "type": "review",
           "settings": {
-            "label": "Sizing & fit info",
-            "fayzo_value": "Honest measurements",
-            "generic_value": "Vague or missing sizing"
+            "stars": 4,
+            "title": "Good, but the velcro is loud",
+            "quote": "Works as described. Do not adjust it in a silent meeting room, everyone turns around.",
+            "name": "Noura",
+            "location": "Dubai",
+            "reply": "Fair. It is on the product page now so nobody is surprised."
           }
         },
-        "row-3": {
-          "type": "comparison_row",
+        "rev3": {
+          "type": "review",
           "settings": {
-            "label": "Returns",
-            "fayzo_value": "14-day, no interrogation",
-            "generic_value": "Often no return policy"
-          }
-        },
-        "row-4": {
-          "type": "comparison_row",
-          "settings": {
-            "label": "Delivery",
-            "fayzo_value": "2–4 days, UAE-based",
-            "generic_value": "2–4 weeks, overseas"
-          }
-        },
-        "row-5": {
-          "type": "comparison_row",
-          "settings": {
-            "label": "Sales tactics",
-            "fayzo_value": "No fake urgency, ever",
-            "generic_value": "Countdown timers & stock warnings"
+            "stars": 5,
+            "title": "Bought the second one for home",
+            "quote": "Kept forgetting it at the office. The two-pack would have saved me the second delivery.",
+            "name": "Hessa",
+            "location": "Abu Dhabi"
           }
         }
       },
-      "block_order": [
-        "row-1",
-        "row-2",
-        "row-3",
-        "row-4",
-        "row-5"
-      ],
+      "block_order": ["rev1", "rev2", "rev3"],
       "settings": {
-        "heading_size": "h1",
-        "color_scheme": "scheme-3",
-        "padding_top": 64,
-        "padding_bottom": 64
+        "heading": "212 reviews. We don't hide the three-stars.",
+        "link_label": "Read all 212",
+        "show_rating_card": false,
+        "hide_on_mobile": true
       }
     },
-    "checklist-cta-closing": {
-      "type": "fayzo-checklist-cta",
+    "faq-trust": {
+      "type": "fayzo-navy-faq-trust",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "How is this different from the AED 45 one on a marketplace?",
+            "answer": "Mostly the straps. We bought two of the cheap ones for the test; both used bare webbing that cuts into the armpit within an hour, which is why they end up in a drawer. If you want to try one anyway, we would rather you did that than return ours."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "Which size, honestly?",
+            "answer": "If your chest measurement is near the top of the S/M range, size up — the strap runs small. Most people end up in L/XL."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I feel something?",
+            "answer": "Most testers noticed a difference within a week of twenty minutes a day."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pay cash when it arrives?",
+            "answer": "Yes — cash on delivery is available at checkout, alongside Tabby, Apple Pay and card."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "Send it back within 14 days for a full refund — we pay the return courier."
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": {
-        "heading": "Ready to fix it?",
-        "heading_size": "h1",
-        "layout": "inline",
-        "button_label": "Add to Cart",
-        "color_scheme": "scheme-1",
-        "padding_top": 56,
-        "padding_bottom": 56
+        "heading": "Questions people actually ask",
+        "trust_heading": "14 days, and we pay the courier",
+        "person_name": "Reem, who does the testing",
+        "quote": "I would rather you send it back than keep something that does not help. Message me on WhatsApp and I will book the pickup myself — you do not need a reason and I will not ask for one.",
+        "check_1": "Full refund within 14 days, no reason needed",
+        "check_2": "Refuse the parcel at the door and pay nothing",
+        "check_3": "WhatsApp 04 555 0180, Sun–Thu, median reply 24 minutes",
+        "check_4": "One year warranty on the stitching and velcro",
+        "hide_on_mobile": true
+      }
+    },
+    "cta-banner": {
+      "type": "fayzo-navy-cta-banner",
+      "settings": {
+        "heading": "Two belts, AED 219, at your door Sunday.",
+        "subheading": "One for the office, one for home — the reason people order the second one a month later.",
+        "primary_label": "Add two to cart",
+        "secondary_label": "Ask us a question",
+        "hide_on_mobile": true
       }
     }
   },
-  "order": [
-    "main",
-    "cross-sell",
-    "real-customer-proof",
-    "deep-dive",
-    "pain-points",
-    "feature-grid",
-    "specs-testing",
-    "checklist-cta-mid",
-    "founder-story",
-    "comparison-faq",
-    "checklist-cta-closing"
-  ]
+  "order": ["main", "compare", "reviews", "faq-trust", "cta-banner"]
 }

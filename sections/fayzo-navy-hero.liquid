@@ -1,0 +1,41 @@
+{% comment %} Homepage hero (2b, first fold below the header). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-hero">
+  <div class="fz-hero__copy">
+    <div class="fz-hero__trust">
+      <span>{{ section.settings.trust_label }}</span>
+      <span class="fz-stars" style="letter-spacing:1.5px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    </div>
+    <h1>{{ section.settings.heading }}</h1>
+    <p class="fz-hero__sub">{{ section.settings.subheading }}</p>
+    <div class="fz-hero__ctas">
+      <a href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}" class="fz-btn fz-btn--amber">{{ section.settings.primary_label }}</a>
+      <a href="{{ section.settings.secondary_link | default: '#fz-how-we-test' }}" class="fz-btn fz-btn--outline-light">{{ section.settings.secondary_label }}</a>
+    </div>
+    <div class="fz-hero__bullets">
+      <span>No countdown timers</span>
+      <span>No stock photos</span>
+      <span>No invented &ldquo;was&rdquo; prices</span>
+    </div>
+  </div>
+  <div class="fz-hero__media">
+    {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: section.settings.heading }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy hero",
+  "settings": [
+    { "type": "text", "id": "trust_label", "label": "Trust label", "default": "Trusted by 9,000+ UAE shoppers" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We tried it first. Then we decided whether to sell it." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Eleven things that fix one specific annoyance. Real photos, an honest verdict on each, and a courier from Dubai that turns up in 2–4 days." },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop this week's picks" },
+    { "type": "url", "id": "primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label", "default": "How we test" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary button link" },
+    { "type": "image_picker", "id": "image", "label": "Hero image" }
+  ],
+  "presets": [{ "name": "Fayzo navy hero" }]
+}
+{% endschema %}

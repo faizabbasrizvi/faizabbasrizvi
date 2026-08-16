@@ -1,0 +1,48 @@
+{% comment %} Newsletter box + "Or just ask us" WhatsApp box, two columns (2b). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-cta-split">
+  <div class="fz-cta-split__box fz-cta-split__box--filled">
+    <h2>{{ section.settings.newsletter_heading }}</h2>
+    <p>{{ section.settings.newsletter_text }}</p>
+    {%- form 'customer', id: 'FayzoNewsletterForm' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="fz-cta-split__row">
+        <input
+          class="fz-cta-split__input"
+          type="email"
+          name="contact[email]"
+          placeholder="your@email.ae"
+          required
+        >
+        <button type="submit" class="fz-btn fz-btn--navy" style="padding:15px 24px;font-size:13.5px">Join</button>
+      </div>
+    {%- endform -%}
+    <div class="fz-cta-split__fine">{{ section.settings.newsletter_fine_print }}</div>
+  </div>
+  <div class="fz-cta-split__box fz-cta-split__box--outline">
+    <h2>{{ section.settings.whatsapp_heading }}</h2>
+    <p>{{ section.settings.whatsapp_text }}</p>
+    <div class="fz-cta-split__row">
+      <a href="{{ section.settings.whatsapp_link }}" class="fz-btn fz-btn--green" style="padding:15px 22px;font-size:13.5px">WhatsApp us</a>
+      <a href="mailto:{{ section.settings.email }}" class="fz-btn fz-btn--outline-dark" style="padding:15px 22px;font-size:13.5px">{{ section.settings.email }}</a>
+    </div>
+    <div class="fz-cta-split__fine">{{ section.settings.whatsapp_fine_print }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter + WhatsApp",
+  "settings": [
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "One email a week. One product." },
+    { "type": "textarea", "id": "newsletter_text", "label": "Newsletter text", "default": "What we tested, what we rejected, and what it costs. Unsubscribe in one click." },
+    { "type": "text", "id": "newsletter_fine_print", "label": "Newsletter fine print", "default": "4,100 subscribers · 38% open rate" },
+    { "type": "text", "id": "whatsapp_heading", "label": "WhatsApp heading", "default": "Or just ask us" },
+    { "type": "textarea", "id": "whatsapp_text", "label": "WhatsApp text", "default": "Describe the annoyance and we will tell you which of the eleven helps, or that none of them do." },
+    { "type": "url", "id": "whatsapp_link", "label": "WhatsApp link" },
+    { "type": "text", "id": "email", "label": "Email", "default": "hello@fayzo.ae" },
+    { "type": "text", "id": "whatsapp_fine_print", "label": "WhatsApp fine print", "default": "Sun–Thu 9am–6pm · median reply 24 minutes" }
+  ],
+  "presets": [{ "name": "Newsletter + WhatsApp" }]
+}
+{% endschema %}

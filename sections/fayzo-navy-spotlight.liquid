@@ -1,0 +1,55 @@
+{% comment %} Featured-product navy spotlight (2b). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+{%- assign p = section.settings.product -%}
+<div class="fz fz-spotlight">
+  <div class="fz-spotlight__media">
+    {{ p.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: p.title }}
+  </div>
+  <div class="fz-spotlight__copy">
+    <div class="fz-eyebrow fz-eyebrow--amber">{{ section.settings.eyebrow }}</div>
+    <h2>{{ p.title | default: section.settings.fallback_title }}</h2>
+    <p>{{ section.settings.description }}</p>
+    <div class="fz-spotlight__tiers">
+      <div class="fz-spotlight__tier">
+        <div class="fz-spotlight__tier-label">{{ section.settings.tier_1_label }}</div>
+        <div class="fz-spotlight__tier-price">{{ section.settings.tier_1_price | default: p.price | money }}</div>
+      </div>
+      <div class="fz-spotlight__tier fz-spotlight__tier--picked">
+        <div class="fz-spotlight__tier-label">
+          <span>{{ section.settings.tier_2_label }}</span>
+          <span class="fz-spotlight__tier-badge">Most picked</span>
+        </div>
+        <div class="fz-spotlight__tier-price">
+          {{ section.settings.tier_2_price }}
+          <span class="fz-spotlight__tier-save">{{ section.settings.tier_2_save }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="fz-spotlight__cta">
+      {%- form 'product', p -%}
+        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+        <button type="submit" class="fz-btn fz-btn--amber">Add to cart</button>
+      {%- endform -%}
+      <div class="fz-spotlight__cta-note">{{ section.settings.cta_note | newline_to_br }}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy spotlight",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Featured product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "This week's pick · 212 reviews" },
+    { "type": "text", "id": "fallback_title", "label": "Fallback title", "default": "Posture Fix Belt" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "We tested five. Four dug into the armpits within an hour, which is why they end up in a drawer. This one spreads the pull across the shoulder blades, and we kept wearing it after the test ended." },
+    { "type": "text", "id": "tier_1_label", "label": "Tier 1 label", "default": "One" },
+    { "type": "text", "id": "tier_1_price", "label": "Tier 1 price override" },
+    { "type": "text", "id": "tier_2_label", "label": "Tier 2 label", "default": "Two — office and home" },
+    { "type": "text", "id": "tier_2_price", "label": "Tier 2 price", "default": "AED 219" },
+    { "type": "text", "id": "tier_2_save", "label": "Tier 2 save note", "default": "save AED 39" },
+    { "type": "textarea", "id": "cta_note", "label": "CTA note", "default": "Arrives Sunday 17 Aug\nFree delivery on the 2-pack" }
+  ],
+  "presets": [{ "name": "Fayzo navy spotlight" }]
+}
+{% endschema %}

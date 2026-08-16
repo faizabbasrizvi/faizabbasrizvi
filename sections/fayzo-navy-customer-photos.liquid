@@ -1,0 +1,47 @@
+{% comment %} "Real customers, real desks" photo grid (2b). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-section">
+  <div class="fz-container">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <h2 class="fz-h2">{{ section.settings.heading }}</h2>
+      <span style="font:600 12.5px/1 var(--fz-sans);color:rgba(10,27,56,.55)">Swipe &rarr;</span>
+    </div>
+    <div class="fz-photo-grid">
+      {%- for block in section.blocks -%}
+        <div class="fz-photo-grid__item{% if block.type == 'video' %} fz-photo-grid__item--video{% endif %}">
+          {%- if block.type == 'video' -%}
+            15s<br>video
+          {%- else -%}
+            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo customer photos",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Real customers, real desks" }
+  ],
+  "blocks": [
+    { "type": "photo", "name": "Photo", "settings": [ { "type": "image_picker", "id": "image", "label": "Image" } ] },
+    { "type": "video", "name": "Video placeholder" }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo customer photos",
+      "blocks": [
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}

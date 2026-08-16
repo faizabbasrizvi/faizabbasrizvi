@@ -1,0 +1,66 @@
+{% comment %}
+  Footer for the navy storefront system — identical on 2a and 2b in the
+  Claude Design handoff, so it's a single static rebuild rather than a
+  block-configurable Dawn footer.
+{% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<footer class="fz fz-footer">
+  <div class="fz-container fz-footer__grid">
+    <div>
+      <div class="fz-footer__brand">fayzo<span class="fz-wordmark__dot">.</span></div>
+      <p>{{ section.settings.brand_text }}</p>
+    </div>
+    <div>
+      <div class="fz-footer__col-title">Shop</div>
+      <a href="{{ routes.all_products_collection_url }}">Desk &amp; posture</a><br>
+      <a href="{{ routes.all_products_collection_url }}">Home fixes</a><br>
+      <a href="{{ routes.all_products_collection_url }}">Sleep</a><br>
+      <a href="{{ routes.all_products_collection_url }}">Everything</a>
+    </div>
+    <div>
+      <div class="fz-footer__col-title">Trust</div>
+      <a href="#fz-how-we-test">How we test</a><br>
+      <a href="{{ pages.shipping-returns.url | default: '#' }}">Shipping &amp; returns</a><br>
+      <a href="#fz-reviews">Reviews</a><br>
+      <a href="#">Track your order</a>
+    </div>
+    <div>
+      <div class="fz-footer__col-title">Talk to us</div>
+      {{ section.settings.whatsapp_label }}<br>
+      <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a><br>
+      {{ section.settings.hours }}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Fayzo navy footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Brand blurb",
+      "default": "Curated in the UAE. Registered in Dubai, licence 1148392. Stock held locally, shipped by Aramex."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_label",
+      "label": "WhatsApp line",
+      "default": "WhatsApp 04 555 0180"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Support email",
+      "default": "hello@fayzo.ae"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Hours",
+      "default": "Sun–Thu, 9am–6pm"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,51 @@
+{% comment %}
+  Top utility bar for the navy storefront system (Claude Design handoff
+  turn 2, options 2a/2b/2c). Desktop shows the three-part message; mobile
+  swaps to the shorter single-line version shown in 2c. Both are rendered
+  and toggled with CSS so there's no layout shift on resize.
+{% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-topbar">
+  <div class="fz-topbar__desktop">
+    <span>{{ section.settings.desktop_shipping | default: 'Ships from Dubai · 2–4 days' }}</span>
+    <span class="fz-topbar__divider">|</span>
+    <span>{{ section.settings.desktop_delivery | default: 'Free delivery over AED 200' }}</span>
+    <span class="fz-topbar__divider">|</span>
+    <span>{{ section.settings.desktop_returns | default: '14-day returns, we pay the courier' }}</span>
+  </div>
+  <div class="fz-topbar__mobile">
+    {{ section.settings.mobile_message | default: 'Ships from Dubai in 2–4 days · COD available' }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy top bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "desktop_shipping",
+      "label": "Desktop segment 1",
+      "default": "Ships from Dubai · 2–4 days"
+    },
+    {
+      "type": "text",
+      "id": "desktop_delivery",
+      "label": "Desktop segment 2",
+      "default": "Free delivery over AED 200"
+    },
+    {
+      "type": "text",
+      "id": "desktop_returns",
+      "label": "Desktop segment 3",
+      "default": "14-day returns, we pay the courier"
+    },
+    {
+      "type": "text",
+      "id": "mobile_message",
+      "label": "Mobile message",
+      "default": "Ships from Dubai in 2–4 days · COD available"
+    }
+  ]
+}
+{% endschema %}

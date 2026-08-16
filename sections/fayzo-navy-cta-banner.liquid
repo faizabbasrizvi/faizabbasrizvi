@@ -1,0 +1,30 @@
+{% comment %} Centered navy closing CTA banner (2a, bottom of product page). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+{%- assign cta_product = section.settings.product | default: product -%}
+<div class="fz fz-cta-banner{% if section.settings.hide_on_mobile %} fz-only-desktop{% endif %}">
+  <h2>{{ section.settings.heading }}</h2>
+  <p>{{ section.settings.subheading }}</p>
+  <div class="fz-cta-banner__actions">
+    {%- form 'product', cta_product -%}
+      <input type="hidden" name="id" value="{{ cta_product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="fz-btn fz-btn--amber">{{ section.settings.primary_label }}</button>
+    {%- endform -%}
+    <a href="{{ section.settings.secondary_link | default: '#' }}" class="fz-btn fz-btn--outline-light">{{ section.settings.secondary_label }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy CTA banner",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Two belts, AED 219, at your door Sunday." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "One for the office, one for home — the reason people order the second one a month later." },
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Add two to cart" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label", "default": "Ask us a question" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary button link" },
+    { "type": "checkbox", "id": "hide_on_mobile", "label": "Hide on mobile", "default": false }
+  ],
+  "presets": [{ "name": "Fayzo navy CTA banner" }]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+{% comment %} "We find a problem..." 3-step how-it-works grid (2b). {% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-steps">
+  <div class="fz-container fz-steps__grid">
+    {%- for block in section.blocks -%}
+      <div class="fz-step" {{ block.shopify_attributes }}>
+        <div class="fz-step__num">{{ block.settings.number }}</div>
+        <div class="fz-step__title">{{ block.settings.title }}</div>
+        <p class="fz-step__desc">{{ block.settings.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fayzo navy how-it-works",
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo navy how-it-works",
+      "blocks": [
+        { "type": "step", "settings": { "number": "01", "title": "We find a problem people keep repeating", "description": "Usually straight out of customer messages, sometimes from whatever is going round on TikTok." } },
+        { "type": "step", "settings": { "number": "02", "title": "We buy three to five and live with them", "description": "Two to three weeks in a normal working week. Not a lab, not an afternoon of unboxing." } },
+        { "type": "step", "settings": { "number": "03", "title": "One earns the shelf, or none do", "description": "Four categories are empty because nothing we could source was good enough. We publish those too." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

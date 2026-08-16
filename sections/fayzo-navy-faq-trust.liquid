@@ -1,0 +1,95 @@
+{% comment %}
+  FAQ list + "14 days, and we pay the courier" trust card, two columns.
+  Shared between homepage (2b) and product page (2a).
+{% endcomment %}
+{{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+<div class="fz fz-section{% if section.settings.hide_on_mobile %} fz-only-desktop{% endif %}" id="fz-how-we-test">
+  <div class="fz-container" style="display:grid;gap:22px">
+    <div class="fz-faq-trust-grid">
+      <div>
+        <h2 class="fz-h2" style="font-size:24px">{{ section.settings.heading }}</h2>
+        <div class="fz-faq-list" style="margin-top:18px">
+          {%- for block in section.blocks -%}
+            <details class="fz-faq-item">
+              <summary>{{ block.settings.question }}<span class="fz-faq-icon">+</span></summary>
+              <p>{{ block.settings.answer }}</p>
+            </details>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="fz-trust-card">
+        <div class="fz-trust-card__head">
+          <div class="fz-trust-card__avatar">
+            {{ section.settings.person_photo | image_url: width: 200 | image_tag: loading: 'lazy', alt: section.settings.person_name }}
+          </div>
+          <div>
+            <div class="fz-trust-card__name">{{ section.settings.trust_heading }}</div>
+            <div class="fz-trust-card__role">{{ section.settings.person_name }}</div>
+          </div>
+        </div>
+        <p class="fz-trust-card__quote">&ldquo;{{ section.settings.quote }}&rdquo;</p>
+        <div class="fz-trust-card__checks">
+          <div><span>&#10003;</span>{{ section.settings.check_1 }}</div>
+          <div><span>&#10003;</span>{{ section.settings.check_2 }}</div>
+          <div><span>&#10003;</span>{{ section.settings.check_3 }}</div>
+          <div><span>&#10003;</span>{{ section.settings.check_4 }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .fz-faq-trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  @media screen and (min-width: 750px) {
+    .fz-faq-trust-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Fayzo navy FAQ + trust",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "FAQ heading", "default": "Questions people ask before their first order" },
+    { "type": "text", "id": "trust_heading", "label": "Trust card heading", "default": "14 days, and we pay the courier" },
+    { "type": "image_picker", "id": "person_photo", "label": "Person photo" },
+    { "type": "text", "id": "person_name", "label": "Person name", "default": "Reem, who does the testing" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "I would rather you send it back than keep something that does not help. Message me on WhatsApp and I will book the pickup myself — you do not need a reason and I will not ask for one." },
+    { "type": "text", "id": "check_1", "label": "Check 1", "default": "Full refund within 14 days, no reason needed" },
+    { "type": "text", "id": "check_2", "label": "Check 2", "default": "Refuse the parcel at the door and pay nothing" },
+    { "type": "text", "id": "check_3", "label": "Check 3", "default": "Cash on delivery, Tabby, Apple Pay or card" },
+    { "type": "text", "id": "check_4", "label": "Check 4", "default": "WhatsApp 04 555 0180 · median reply 24 minutes" },
+    { "type": "checkbox", "id": "hide_on_mobile", "label": "Hide on mobile", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fayzo navy FAQ + trust",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "How do I know this isn't another dropship store?", "answer": "Our stock sits in Dubai Investment Park, which is why every product page shows a delivery date rather than a two-to-four-week range. The photos are shot in our office, so reverse image search finds them nowhere else. And the licence number in the footer is real — 1148392, registered in Dubai." } },
+        { "type": "faq", "settings": { "question": "Can I pay cash when it arrives?", "answer": "Yes — cash on delivery is available at checkout, alongside Tabby, Apple Pay and card." } },
+        { "type": "faq", "settings": { "question": "How long does delivery actually take?", "answer": "2–4 days across the UAE, from stock already held in Dubai." } },
+        { "type": "faq", "settings": { "question": "What if the thing doesn't work for me?", "answer": "Send it back within 14 days for a full refund — we pay the return courier." } },
+        { "type": "faq", "settings": { "question": "Why only eleven products?", "answer": "Because that's how many have earned the shelf. We publish the categories where nothing passed too." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
