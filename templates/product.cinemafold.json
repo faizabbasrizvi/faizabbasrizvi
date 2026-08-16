@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-cinemafold",
+      "blocks": {
+        "cs1": {
+          "type": "crosssell_item",
+          "settings": { "fallback_title": "Lumbar Wedge", "product": "gripcharge-car-mount" }
+        },
+        "cs2": {
+          "type": "crosssell_item",
+          "settings": { "fallback_title": "Cable Nest", "product": "deskglow-mini-humidifier" }
+        },
+        "ci1": {
+          "type": "checklist_item",
+          "settings": { "title": "Stretch design, silicone button", "description": "A smooth sliding mechanism with silicone padding — protects your phone and takes one motion to set up." }
+        },
+        "ci2": {
+          "type": "checklist_item",
+          "settings": { "title": "2–4x amplification lens", "description": "Enlarges your screen and softens the light hitting your eyes, so long viewing feels less tiring." }
+        },
+        "ci3": {
+          "type": "checklist_item",
+          "settings": { "title": "Hands-free stand built in", "description": "Props your phone up on its own for calls, videos or reading — nothing to hold." }
+        },
+        "ci4": {
+          "type": "checklist_item",
+          "settings": { "title": "Folds flat to carry", "description": "Collapses down for a bag or a desk drawer. It's a stand you'll actually keep with you." }
+        },
+        "ci5": {
+          "type": "checklist_item",
+          "settings": { "title": "No batteries, no app", "description": "It's a lens and a stand, not electronics. Nothing to charge, pair, or update." }
+        }
+      },
+      "block_order": ["cs1", "cs2", "ci1", "ci2", "ci3", "ci4", "ci5"],
+      "settings": {
+        "crosssell_heading": "Also on the shelf",
+        "crosssell_subheading": "Other things people fix their desk with",
+        "problem_heading": "Your phone screen is fine. It's just six inches.",
+        "problem_text_1": "Most people hold a phone 20–30cm from their face for hours of video. That's what causes the squint, and the ache behind the eyes by the end of a long show.",
+        "problem_text_2": "A bigger picture at the same distance means less squinting, not brighter light or a different phone. That's the entire idea here — a lens, not electronics.",
+        "checklist_heading": "What you're actually getting"
+      }
+    },
+    "compare": {
+      "type": "fayzo-navy-compare",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Someone used it before it was listed", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r2": { "type": "row", "settings": { "label": "The photos are of the item you receive", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "depends on the seller" } },
+        "r3": { "type": "row", "settings": { "label": "Stock is already in the UAE", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } },
+        "r4": { "type": "row", "settings": { "label": "Tells you who should not buy it", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r5": { "type": "row", "settings": { "label": "A named person answers your message", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "a chatbot" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "heading": "Fayzo vs. the two ways you usually buy this"
+      }
+    },
+    "faq-trust": {
+      "type": "fayzo-navy-faq-trust",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "Does it fit any phone?",
+            "answer": "Most phones fit the base clip, cased or not. The lens sits over the screen rather than around the phone, so width is rarely the limiting factor."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "Does it need charging or an app?",
+            "answer": "No. It's a fold-out lens and a stand — nothing to charge, pair, or update."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the picture be blurry at the edges?",
+            "answer": "Some softness at the very edge is normal for this kind of lens. The center of the image — where your eyes actually sit — stays sharp."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use it outdoors?",
+            "answer": "It works best indoors or in shade. Like any screen, direct sunlight washes the picture out."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pay cash when it arrives?",
+            "answer": "Yes — cash on delivery is available at checkout, alongside Tabby, Apple Pay and card."
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {
+        "heading": "Questions people actually ask",
+        "trust_heading": "14 days, and we pay the courier",
+        "person_name": "Reem, who does the testing",
+        "quote": "I would rather you send it back than keep something that does not help. Message me on WhatsApp and I will book the pickup myself — you do not need a reason and I will not ask for one.",
+        "check_1": "Full refund within 14 days, no reason needed",
+        "check_2": "Refuse the parcel at the door and pay nothing",
+        "check_3": "WhatsApp 04 555 0180, Sun–Thu, median reply 24 minutes",
+        "check_4": "Cash on delivery, Tabby, Apple Pay or card"
+      }
+    },
+    "cta-banner": {
+      "type": "fayzo-navy-cta-banner",
+      "settings": {
+        "heading": "Turn any phone into a mini theatre.",
+        "subheading": "Two magnifiers, one for you and one to gift — at your door in 2–4 days.",
+        "primary_label": "Add two to cart",
+        "secondary_label": "Ask us a question"
+      }
+    }
+  },
+  "order": ["main", "compare", "faq-trust", "cta-banner"]
+}
