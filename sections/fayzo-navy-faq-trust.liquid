@@ -20,7 +20,9 @@
       <div class="fz-trust-card">
         <div class="fz-trust-card__head">
           <div class="fz-trust-card__avatar">
-            {{ section.settings.person_photo | image_url: width: 200 | image_tag: loading: 'lazy', alt: section.settings.person_name }}
+            {%- if section.settings.person_photo != blank -%}
+              {{ section.settings.person_photo | image_url: width: 200 | image_tag: loading: 'lazy', alt: section.settings.person_name }}
+            {%- endif -%}
           </div>
           <div>
             <div class="fz-trust-card__name">{{ section.settings.trust_heading }}</div>

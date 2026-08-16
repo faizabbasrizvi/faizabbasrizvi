@@ -20,28 +20,28 @@
   <div class="fz-pdp__grid">
     <div class="fz-pdp__gallery">
       <div class="fz-pdp__main-media" id="FzMainMedia-{{ section.id }}">
-        {{ img0 | image_url: width: 900 | image_tag: loading: 'eager', alt: product.title }}
+        {%- if img0 -%}{{ img0 | image_url: width: 900 | image_tag: loading: 'eager', alt: product.title }}{%- endif -%}
         <span class="fz-pdp__badge">#1 best seller</span>
         <span class="fz-pdp__badge-note fz-only-desktop">our photo, not the supplier&rsquo;s</span>
         <span class="fz-pdp__counter fz-only-mobile">1 / {{ product.media.size | at_least: 1 }}</span>
       </div>
 
       <div class="fz-pdp__thumbs fz-only-desktop">
-        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
-        <button type="button" class="fz-pdp__thumb">{{ img1 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
-        <button type="button" class="fz-pdp__thumb">{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
+        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
+        <button type="button" class="fz-pdp__thumb">{%- if img1 -%}{{ img1 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
+        <button type="button" class="fz-pdp__thumb">{%- if img2 -%}{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
         <div class="fz-pdp__thumb fz-pdp__thumb--label">how to<br>wear</div>
         <div class="fz-pdp__thumb fz-pdp__thumb--label">15s<br>video</div>
         <div class="fz-pdp__thumb fz-pdp__thumb--label">size<br>chart</div>
       </div>
 
       <div class="fz-pdp__thumbs fz-only-mobile">
-        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
-        <button type="button" class="fz-pdp__thumb">{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
-        <button type="button" class="fz-pdp__thumb">{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
-        <button type="button" class="fz-pdp__thumb">{{ img3 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}</button>
+        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
+        <button type="button" class="fz-pdp__thumb">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
+        <button type="button" class="fz-pdp__thumb">{%- if img2 -%}{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
+        <button type="button" class="fz-pdp__thumb">{%- if img3 -%}{{ img3 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
         <button type="button" class="fz-pdp__thumb" style="position:relative">
-          {{ img4 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+          {%- if img4 -%}{{ img4 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
           <span class="fz-problem__play" style="position:absolute"><span style="width:32px;height:32px;font-size:11px">&#9654;</span></span>
         </button>
       </div>
@@ -49,7 +49,7 @@
       <div class="fz-pdp__social-mini fz-only-desktop">
         <div class="fz-eyebrow">Real customers, real desks</div>
         <div class="fz-pdp__social-mini-head">
-          <div class="fz-pdp__social-mini-avatar">{{ img1 | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}</div>
+          <div class="fz-pdp__social-mini-avatar">{%- if img1 -%}{{ img1 | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</div>
           <div>
             <div class="fz-stars" style="letter-spacing:1.5px;font-size:11px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p>&ldquo;Four days in and the 4pm ache is gone. The page told me to size up, which was the right call.&rdquo;</p>
@@ -229,11 +229,13 @@
     </div>
     <div class="fz-crosssell__items">
       {%- for block in section.blocks -%}
-        {%- if block.type == 'crosssell_item' -%}
+        {%- if block.type == 'crosssell_item' and block.settings.product -%}
           {%- assign cs_product = block.settings.product -%}
           <div class="fz-crosssell__item">
             <div class="fz-crosssell__item-img">
-              {{ cs_product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: cs_product.title }}
+              {%- if cs_product.featured_image -%}
+                {{ cs_product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: cs_product.title }}
+              {%- endif -%}
             </div>
             <div>
               <div class="fz-crosssell__item-title">{{ cs_product.title | default: block.settings.fallback_title }}</div>
@@ -264,7 +266,9 @@
 
   <div class="fz-problem fz-only-desktop">
     <div class="fz-problem__media">
-      {{ section.settings.problem_video_poster | image_url: width: 1400 | image_tag: loading: 'lazy', alt: 'video — slouch vs. supported, same desk' }}
+      {%- if section.settings.problem_video_poster != blank -%}
+        {{ section.settings.problem_video_poster | image_url: width: 1400 | image_tag: loading: 'lazy', alt: 'video — slouch vs. supported, same desk' }}
+      {%- endif -%}
       <div class="fz-problem__play"><span>&#9654;</span></div>
     </div>
     <div class="fz-problem__copy">
@@ -285,7 +289,9 @@
         {%- if block.type == 'checklist_item' -%}
           <div>
             <div class="fz-checklist__media">
-              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {%- endif -%}
             </div>
             <div class="fz-checklist__title">{{ block.settings.title }}</div>
             <p class="fz-checklist__desc">{{ block.settings.description }}</p>

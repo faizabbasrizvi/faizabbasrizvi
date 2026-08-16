@@ -3,7 +3,9 @@
 {%- assign p = section.settings.product -%}
 <div class="fz fz-spotlight">
   <div class="fz-spotlight__media">
-    {{ p.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: p.title }}
+    {%- if p.featured_image -%}
+      {{ p.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: p.title }}
+    {%- endif -%}
   </div>
   <div class="fz-spotlight__copy">
     <div class="fz-eyebrow fz-eyebrow--amber">{{ section.settings.eyebrow }}</div>
@@ -12,7 +14,13 @@
     <div class="fz-spotlight__tiers">
       <div class="fz-spotlight__tier">
         <div class="fz-spotlight__tier-label">{{ section.settings.tier_1_label }}</div>
-        <div class="fz-spotlight__tier-price">{{ section.settings.tier_1_price | default: p.price | money }}</div>
+        <div class="fz-spotlight__tier-price">
+          {%- if section.settings.tier_1_price != blank -%}
+            {{ section.settings.tier_1_price }}
+          {%- elsif p -%}
+            {{ p.price | money }}
+          {%- endif -%}
+        </div>
       </div>
       <div class="fz-spotlight__tier fz-spotlight__tier--picked">
         <div class="fz-spotlight__tier-label">
@@ -26,10 +34,12 @@
       </div>
     </div>
     <div class="fz-spotlight__cta">
-      {%- form 'product', p -%}
-        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
-        <button type="submit" class="fz-btn fz-btn--amber">Add to cart</button>
-      {%- endform -%}
+      {%- if p -%}
+        {%- form 'product', p -%}
+          <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+          <button type="submit" class="fz-btn fz-btn--amber">Add to cart</button>
+        {%- endform -%}
+      {%- endif -%}
       <div class="fz-spotlight__cta-note">{{ section.settings.cta_note | newline_to_br }}</div>
     </div>
   </div>

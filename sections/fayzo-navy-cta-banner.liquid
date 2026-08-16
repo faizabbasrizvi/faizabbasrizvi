@@ -5,10 +5,12 @@
   <h2>{{ section.settings.heading }}</h2>
   <p>{{ section.settings.subheading }}</p>
   <div class="fz-cta-banner__actions">
-    {%- form 'product', cta_product -%}
-      <input type="hidden" name="id" value="{{ cta_product.selected_or_first_available_variant.id }}">
-      <button type="submit" class="fz-btn fz-btn--amber">{{ section.settings.primary_label }}</button>
-    {%- endform -%}
+    {%- if cta_product -%}
+      {%- form 'product', cta_product -%}
+        <input type="hidden" name="id" value="{{ cta_product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="fz-btn fz-btn--amber">{{ section.settings.primary_label }}</button>
+      {%- endform -%}
+    {%- endif -%}
     <a href="{{ section.settings.secondary_link | default: '#' }}" class="fz-btn fz-btn--outline-light">{{ section.settings.secondary_label }}</a>
   </div>
 </div>

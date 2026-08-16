@@ -5,11 +5,11 @@
       "blocks": {
         "cs1": {
           "type": "crosssell_item",
-          "settings": { "fallback_title": "Lumbar Wedge" }
+          "settings": { "fallback_title": "Lumbar Wedge", "product": "gripcharge-car-mount" }
         },
         "cs2": {
           "type": "crosssell_item",
-          "settings": { "fallback_title": "Cable Nest" }
+          "settings": { "fallback_title": "Cable Nest", "product": "deskglow-mini-humidifier" }
         },
         "ci1": {
           "type": "checklist_item",

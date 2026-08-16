@@ -39,7 +39,8 @@
         "heading": "On the shelf this week",
         "subheading": "Every one has a verdict. When something stops earning its place, it goes.",
         "view_all_label": "See all 11",
-        "products_to_show": 4
+        "products_to_show": 4,
+        "collection": "frontpage"
       }
     },
     "shop-by": {
@@ -68,7 +69,8 @@
         "tier_2_label": "Two — office and home",
         "tier_2_price": "AED 219",
         "tier_2_save": "save AED 39",
-        "cta_note": "Arrives Sunday 17 Aug\nFree delivery on the 2-pack"
+        "cta_note": "Arrives Sunday 17 Aug\nFree delivery on the 2-pack",
+        "product": "neckease-posture-clip"
       }
     },
     "compare": {

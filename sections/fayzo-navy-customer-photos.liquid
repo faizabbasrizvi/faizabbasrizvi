@@ -11,7 +11,7 @@
         <div class="fz-photo-grid__item{% if block.type == 'video' %} fz-photo-grid__item--video{% endif %}">
           {%- if block.type == 'video' -%}
             15s<br>video
-          {%- else -%}
+          {%- elsif block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '' }}
           {%- endif -%}
         </div>

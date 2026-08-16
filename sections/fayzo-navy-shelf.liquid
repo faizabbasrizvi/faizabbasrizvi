@@ -18,7 +18,9 @@
             {%- if forloop.first -%}
               <span class="fz-product-card__badge">#1 seller</span>
             {%- endif -%}
-            {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title }}
+            {%- if product.featured_image -%}
+              {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title }}
+            {%- endif -%}
           </a>
           <div class="fz-product-card__body">
             {%- if product.metafields.reviews.rating.value != blank -%}

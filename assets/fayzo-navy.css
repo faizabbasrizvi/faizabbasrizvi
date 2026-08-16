@@ -693,6 +693,7 @@
   font: 800 34px/1.08 var(--fz-sans);
   letter-spacing: -0.03em;
   text-wrap: balance;
+  color: #fff;
 }
 
 .fz-hero__copy p.fz-hero__sub {
@@ -948,6 +949,7 @@
   margin: 13px 0 0;
   font: 800 28px/1.12 var(--fz-sans);
   letter-spacing: -0.03em;
+  color: #fff;
 }
 
 .fz-spotlight__copy p {
@@ -1274,6 +1276,7 @@
   margin: 0;
   font: 800 26px/1.14 var(--fz-sans);
   letter-spacing: -0.028em;
+  color: #fff;
 }
 
 .fz-cta-banner p {
@@ -2108,6 +2111,7 @@
 .fz-stats__head h2 {
   margin: 12px 0 0;
   font: 800 24px/1.15 var(--fz-sans);
+  color: #fff;
 }
 
 .fz-stats__grid {

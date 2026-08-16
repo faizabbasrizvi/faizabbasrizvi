@@ -6,7 +6,9 @@
 <div class="fz fz-sticky-desktop">
   <div class="fz-sticky-desktop__left">
     <div class="fz-sticky-desktop__thumb">
-      {{ product.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: product.title }}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: product.title }}
+      {%- endif -%}
     </div>
     <div>
       <div class="fz-sticky-desktop__title">{{ product.title }} &middot; 2-pack &middot; L/XL</div>

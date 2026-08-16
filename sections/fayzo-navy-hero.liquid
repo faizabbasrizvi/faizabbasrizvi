@@ -19,7 +19,9 @@
     </div>
   </div>
   <div class="fz-hero__media">
-    {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: section.settings.heading }}
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: section.settings.heading }}
+    {%- endif -%}
   </div>
 </div>
 
