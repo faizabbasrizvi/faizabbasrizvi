@@ -55,6 +55,45 @@
         if (submitText) submitText.textContent = (window.variantStrings && window.variantStrings.unavailable) || 'Unavailable';
       }
     });
+
+    document.querySelectorAll('[data-fz-buy-now]').forEach(function (buyNowBtn) {
+      if (variant && variant.available) {
+        buyNowBtn.removeAttribute('disabled');
+      } else {
+        buyNowBtn.setAttribute('disabled', 'disabled');
+      }
+    });
+  }
+
+  function initBuyNow() {
+    document.querySelectorAll('[data-fz-buy-now]').forEach(function (buyNowBtn) {
+      buyNowBtn.addEventListener('click', function () {
+        if (buyNowBtn.hasAttribute('disabled')) return;
+        var buybox = buyNowBtn.closest('[data-fz-buybox]');
+        var idInput = buybox ? buybox.querySelector('.product-variant-id') : document.querySelector('.product-variant-id');
+        if (!idInput || !idInput.value) return;
+
+        var originalText = buyNowBtn.textContent;
+        buyNowBtn.setAttribute('disabled', 'disabled');
+        buyNowBtn.textContent = 'Adding…';
+
+        fetch((window.routes && window.routes.cart_add_url) || '/cart/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items: [{ id: idInput.value, quantity: 1 }] }),
+        })
+          .then(function (response) {
+            return response.json().then(function (data) {
+              if (!response.ok) throw new Error(data.description || data.message || 'Could not add to cart');
+              window.location.href = '/checkout';
+            });
+          })
+          .catch(function () {
+            buyNowBtn.removeAttribute('disabled');
+            buyNowBtn.textContent = originalText;
+          });
+      });
+    });
   }
 
   function initVariantSync() {
@@ -94,6 +133,7 @@
 
   function init() {
     initVariantSync();
+    initBuyNow();
     document.querySelectorAll('.fz-pdp__gallery').forEach(initGallery);
   }
 

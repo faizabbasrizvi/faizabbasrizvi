@@ -128,6 +128,15 @@
                 show_pickup_availability: false
               -%}
 
+              <button
+                type="button"
+                class="fz-cta-amber"
+                data-fz-buy-now
+                {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}
+                  disabled
+                {% endif %}
+              >Buy now &mdash; Apple Pay</button>
+
               <div class="fz-payment-row">
                 <span class="fz-payment-chip">VISA</span>
                 <span class="fz-payment-chip">MC</span>
