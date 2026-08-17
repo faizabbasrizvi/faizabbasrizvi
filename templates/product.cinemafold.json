@@ -1,16 +1,36 @@
 {
   "sections": {
     "main": {
-      "type": "main-product-cinemafold",
+      "type": "main-product",
       "blocks": {
-        "cs1": {
-          "type": "crosssell_item",
-          "settings": { "fallback_title": "Lumbar Wedge", "product": "gripcharge-car-mount" }
+        "badge": { "type": "badge", "settings": { "text": "New arrival" } },
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "No batteries, no app — just a lens" } },
+        "hook": {
+          "type": "hook",
+          "settings": { "text": "Squinting at a 6-inch screen for two hours a night is why your eyes feel tired by 9pm. This puts the same video on a screen roughly four times the size, no charging and nothing to pair." }
         },
-        "cs2": {
-          "type": "crosssell_item",
-          "settings": { "fallback_title": "Cable Nest", "product": "deskglow-mini-humidifier" }
+        "buy_box": {
+          "type": "buy_box",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none",
+            "delivery_line_1": "Arrives in 2–4 days",
+            "delivery_line_1_desc": "In stock in Dubai. A real date at checkout, not an estimate from abroad.",
+            "delivery_line_2": "14 days to change your mind",
+            "delivery_line_2_desc": "We pay the return courier. Refuse it at the door if you like."
+          }
         },
+        "verdict": {
+          "type": "verdict",
+          "settings": {
+            "heading": "Our take",
+            "good_for": "Video calls, shows in bed, or reading — anywhere you want two hands free.",
+            "not_for": "Bright direct sunlight — like any screen, the picture washes out outdoors."
+          }
+        },
+        "description": { "type": "description", "settings": {} },
+        "cs1": { "type": "crosssell_item", "settings": { "product": "gripcharge-car-mount" } },
+        "cs2": { "type": "crosssell_item", "settings": { "product": "deskglow-mini-humidifier" } },
         "ci1": {
           "type": "checklist_item",
           "settings": { "title": "Stretch design, silicone button", "description": "A smooth sliding mechanism with silicone padding — protects your phone and takes one motion to set up." }
@@ -32,7 +52,7 @@
           "settings": { "title": "No batteries, no app", "description": "It's a lens and a stand, not electronics. Nothing to charge, pair, or update." }
         }
       },
-      "block_order": ["cs1", "cs2", "ci1", "ci2", "ci3", "ci4", "ci5"],
+      "block_order": ["badge", "eyebrow", "hook", "buy_box", "verdict", "description", "cs1", "cs2", "ci1", "ci2", "ci3", "ci4", "ci5"],
       "settings": {
         "crosssell_heading": "Also on the shelf",
         "crosssell_subheading": "Other things people fix their desk with",

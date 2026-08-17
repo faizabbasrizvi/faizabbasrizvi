@@ -1,8 +1,11 @@
 {% comment %}
-  Sticky add-to-cart bar. Desktop (2a): product thumb + title/meta on the
-  left, price + Add to cart on the right. Mobile (2c): full-width amber
-  Add-to-cart button + WhatsApp button. Accepts `product` and `variant`.
+  Sticky add-to-cart bar. Desktop: thumb + title + live price on the left,
+  real Add to cart on the right. Mobile: full-width Add to cart + optional
+  WhatsApp button. Fully dynamic — no hardcoded price, size, or date — and
+  stays in sync with the buy box above via fz-product.js.
+  Accepts `product`.
 {% endcomment %}
+{%- assign sticky_variant = product.selected_or_first_available_variant -%}
 <div class="fz fz-sticky-desktop">
   <div class="fz-sticky-desktop__left">
     <div class="fz-sticky-desktop__thumb">
@@ -11,26 +14,30 @@
       {%- endif -%}
     </div>
     <div>
-      <div class="fz-sticky-desktop__title">{{ product.title }} &middot; 2-pack &middot; L/XL</div>
-      <div class="fz-sticky-desktop__meta">Arrives Sun 17 Aug &middot; free delivery &middot; you save AED 39</div>
+      <div class="fz-sticky-desktop__title">{{ product.title }}</div>
+      <div class="fz-sticky-desktop__meta" data-fz-price>{{ sticky_variant.price | money }}</div>
     </div>
   </div>
   <div class="fz-sticky-desktop__right">
-    <span class="fz-sticky-desktop__price">AED 219</span>
-    {%- form 'product', product -%}
-      <input type="hidden" name="id" value="{{ variant.id }}">
-      <button type="submit" class="fz-btn fz-btn--amber" style="padding:14px 32px;font-size:15px">Add to cart</button>
-    {%- endform -%}
+    {%- render 'buy-buttons',
+      product: product,
+      product_form_id: 'product-form-sticky-desktop',
+      section_id: 'sticky-desktop',
+      show_pickup_availability: false
+    -%}
   </div>
 </div>
 
 <div class="fz fz-sticky-mobile">
   <div class="fz-sticky-mobile__row">
-    {%- form 'product', product -%}
-      <input type="hidden" name="id" value="{{ variant.id }}">
-      <button type="submit" class="fz-sticky-mobile__atc">Add 2 to cart &mdash; AED 219</button>
-    {%- endform -%}
-    <a href="{{ section.settings.whatsapp_link | default: '#' }}" class="fz-sticky-mobile__wa" aria-label="WhatsApp us">WA</a>
+    {%- render 'buy-buttons',
+      product: product,
+      product_form_id: 'product-form-sticky-mobile',
+      section_id: 'sticky-mobile',
+      show_pickup_availability: false
+    -%}
+    {%- if section.settings.whatsapp_link != blank -%}
+      <a href="{{ section.settings.whatsapp_link }}" class="fz-sticky-mobile__wa" aria-label="WhatsApp us">WA</a>
+    {%- endif -%}
   </div>
-  <div class="fz-sticky-mobile__note">Free delivery &middot; arrives Sun 17 Aug &middot; no timers here</div>
 </div>

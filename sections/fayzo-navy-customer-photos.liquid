@@ -8,9 +8,13 @@
     </div>
     <div class="fz-photo-grid">
       {%- for block in section.blocks -%}
-        <div class="fz-photo-grid__item{% if block.type == 'video' %} fz-photo-grid__item--video{% endif %}">
+        <div class="fz-photo-grid__item{% if block.type == 'video' %} fz-photo-grid__item--video{% endif %}" {{ block.shopify_attributes }}>
           {%- if block.type == 'video' -%}
-            15s<br>video
+            {%- if block.settings.video != blank -%}
+              {{ block.settings.video | video_tag: image_size: '900x', autoplay: false, loop: false, controls: true, muted: false }}
+            {%- elsif block.settings.cover_image != blank -%}
+              {{ block.settings.cover_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '' }}
+            {%- endif -%}
           {%- elsif block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '' }}
           {%- endif -%}
@@ -28,7 +32,14 @@
   ],
   "blocks": [
     { "type": "photo", "name": "Photo", "settings": [ { "type": "image_picker", "id": "image", "label": "Image" } ] },
-    { "type": "video", "name": "Video placeholder" }
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video" },
+        { "type": "image_picker", "id": "cover_image", "label": "Cover image (shown until video is added)" }
+      ]
+    }
   ],
   "presets": [
     {

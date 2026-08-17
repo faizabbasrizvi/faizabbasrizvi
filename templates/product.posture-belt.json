@@ -1,0 +1,186 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Tested 5, kept 1" } },
+        "rating": { "type": "rating", "settings": { "score": "4.7", "count_label": "212 reviews" } },
+        "hook": {
+          "type": "hook",
+          "settings": { "text": "No more slumping into your monitor by mid-afternoon. Twenty minutes a day is enough to feel the difference in a week." }
+        },
+        "buy_box": {
+          "type": "buy_box",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none",
+            "delivery_line_1": "Arrives in 2–4 days",
+            "delivery_line_1_desc": "In stock in Dubai. A real date at checkout, not an estimate from abroad.",
+            "delivery_line_2": "14 days to change your mind",
+            "delivery_line_2_desc": "We pay the return courier. Refuse it at the door if you like."
+          }
+        },
+        "verdict": {
+          "type": "verdict",
+          "settings": {
+            "heading": "Our verdict after 3 weeks",
+            "good_for": "You sit 6+ hours and ache between the shoulder blades.",
+            "not_for": "You have a diagnosed spinal condition. See a physio, not us."
+          }
+        },
+        "description": { "type": "description", "settings": {} },
+        "cs1": { "type": "crosssell_item", "settings": { "product": "gripcharge-car-mount" } },
+        "cs2": { "type": "crosssell_item", "settings": { "product": "deskglow-mini-humidifier" } },
+        "ci1": {
+          "type": "checklist_item",
+          "settings": { "title": "Straps that don't bite", "description": "Padded where the others use bare webbing. This is the whole reason we kept it." }
+        },
+        "ci2": {
+          "type": "checklist_item",
+          "settings": { "title": "Invisible under a shirt", "description": "Fine under a polo or oxford. It does show through thin linen." }
+        },
+        "ci3": {
+          "type": "checklist_item",
+          "settings": { "title": "Washable, and it survived it", "description": "Six machine washes in our test. No fraying, no loss of tension." }
+        },
+        "ci4": {
+          "type": "checklist_item",
+          "settings": { "title": "One-handed to fasten", "description": "You can put it on at your desk without standing up or asking for help." }
+        },
+        "ci5": {
+          "type": "checklist_item",
+          "settings": { "title": "Loud velcro", "description": "The one thing we'd change. Don't adjust it in a silent meeting room." }
+        },
+        "stat1": { "type": "stat", "settings": { "number": "41", "description": "said the afternoon ache was noticeably better within a week" } },
+        "stat2": { "type": "stat", "settings": { "number": "4", "description": "felt no difference at all. Two of them sat less than four hours a day" } },
+        "stat3": { "type": "stat", "settings": { "number": "2", "description": "gave it back. One found it too warm, one wanted a firmer pull" } }
+      },
+      "block_order": ["eyebrow", "rating", "hook", "buy_box", "verdict", "description", "cs1", "cs2", "ci1", "ci2", "ci3", "ci4", "ci5", "stat1", "stat2", "stat3"],
+      "settings": {
+        "crosssell_heading": "Complete the desk fix",
+        "crosssell_subheading": "Added with the belt by most buyers",
+        "problem_heading": "Your chair is fine. Nine hours in it is the problem.",
+        "problem_text_1": "By mid-afternoon your shoulders round forward, your neck follows, and the ache between your shoulder blades sets in. Stretching at 6pm undoes about an hour of it.",
+        "problem_text_2": "The belt works as a reminder, not a brace. Twenty minutes a day of being held in the right position is enough for your back to start holding itself.",
+        "checklist_heading": "Five things we checked, so you don't have to",
+        "stats_heading": "We gave it to 47 people for two weeks. Here is all of it.",
+        "stats_footnote": "We publish the misses because a page where everything works is a page nobody believes."
+      }
+    },
+    "compare": {
+      "type": "fayzo-navy-compare",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Someone used it before it was listed", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r2": { "type": "row", "settings": { "label": "The photos are of the item you receive", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "depends on the seller" } },
+        "r3": { "type": "row", "settings": { "label": "Stock is already in the UAE", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } },
+        "r4": { "type": "row", "settings": { "label": "Tells you who should not buy it", "fayzo": "yes", "dropship": "no", "marketplace": "no" } },
+        "r5": { "type": "row", "settings": { "label": "A named person answers your message", "fayzo": "yes", "dropship": "no", "marketplace": "note", "marketplace_note": "a chatbot" } },
+        "r6": { "type": "row", "settings": { "label": "No countdown timers or invented \"was\" prices", "fayzo": "yes", "dropship": "no", "marketplace": "yes" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"],
+      "settings": {
+        "heading": "Fayzo vs. the two ways you usually buy this",
+        "hide_on_mobile": true
+      }
+    },
+    "reviews": {
+      "type": "fayzo-navy-reviews",
+      "blocks": {
+        "rev1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Sized up as advised",
+            "quote": "Chest is 108cm so I took the L/XL. Four days at the office and the 4pm ache is gone.",
+            "name": "Vikram",
+            "location": "Sharjah"
+          }
+        },
+        "rev2": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "title": "Good, but the velcro is loud",
+            "quote": "Works as described. Do not adjust it in a silent meeting room, everyone turns around.",
+            "name": "Noura",
+            "location": "Dubai",
+            "reply": "Fair. It is on the product page now so nobody is surprised."
+          }
+        },
+        "rev3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Bought the second one for home",
+            "quote": "Kept forgetting it at the office. The two-pack would have saved me the second delivery.",
+            "name": "Hessa",
+            "location": "Abu Dhabi"
+          }
+        }
+      },
+      "block_order": ["rev1", "rev2", "rev3"],
+      "settings": {
+        "heading": "212 reviews. We don't hide the three-stars.",
+        "link_label": "Read all 212",
+        "show_rating_card": false,
+        "hide_on_mobile": true
+      }
+    },
+    "faq-trust": {
+      "type": "fayzo-navy-faq-trust",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "How is this different from the AED 45 one on a marketplace?",
+            "answer": "Mostly the straps. We bought two of the cheap ones for the test; both used bare webbing that cuts into the armpit within an hour, which is why they end up in a drawer. If you want to try one anyway, we would rather you did that than return ours."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I feel something?",
+            "answer": "Most testers noticed a difference within a week of twenty minutes a day."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pay cash when it arrives?",
+            "answer": "Yes — cash on delivery is available at checkout, alongside Tabby, Apple Pay and card."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it does not work for me?",
+            "answer": "Send it back within 14 days for a full refund — we pay the return courier."
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"],
+      "settings": {
+        "heading": "Questions people actually ask",
+        "trust_heading": "14 days, and we pay the courier",
+        "person_name": "Reem, who does the testing",
+        "quote": "I would rather you send it back than keep something that does not help. Message me on WhatsApp and I will book the pickup myself — you do not need a reason and I will not ask for one.",
+        "check_1": "Full refund within 14 days, no reason needed",
+        "check_2": "Refuse the parcel at the door and pay nothing",
+        "check_3": "WhatsApp 04 555 0180, Sun–Thu, median reply 24 minutes",
+        "check_4": "One year warranty on the stitching and velcro",
+        "hide_on_mobile": true
+      }
+    },
+    "cta-banner": {
+      "type": "fayzo-navy-cta-banner",
+      "settings": {
+        "heading": "At your door in 2–4 days.",
+        "subheading": "Cash on delivery, Tabby, Apple Pay or card — your call.",
+        "primary_label": "Add to cart",
+        "secondary_label": "Ask us a question",
+        "hide_on_mobile": true
+      }
+    }
+  },
+  "order": ["main", "compare", "reviews", "faq-trust", "cta-banner"]
+}

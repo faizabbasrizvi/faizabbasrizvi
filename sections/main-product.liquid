@@ -1,350 +1,285 @@
 {% comment %}
-  Product page hero: gallery + buy box, rebuilt to match the Claude Design
-  handoff exactly — 2a for desktop (1240px) and 2c for mobile (390px).
-  Because the two breakpoints differ in content and document order (not
-  just responsive reflow — e.g. the verdict box comes before the delivery
-  note on mobile but after it on desktop), the buy box is rendered twice
-  and toggled with .fz-only-desktop / .fz-only-mobile rather than reflowed
-  with CSS alone.
+  Generic, data-driven product page. Every option/variant/price/description
+  comes straight from `product` — nothing here is hardcoded to a specific
+  product. Uses Dawn's own variant-selects + buy-buttons + product-form.js
+  for cart handling (proven, AJAX, cart-drawer aware) restyled to match the
+  fz-navy design system. If a product has only its default variant, the
+  variant picker renders nothing at all — no fake sizes/bundles.
+
+  Editorial content (verdict, problem, checklist, stats, cross-sell) is all
+  optional blocks with empty defaults, so a new product shows only what you
+  actually configure for it. Products that need distinctly different
+  editorial content should use their own template (Product admin > Theme
+  template dropdown) — see templates/product.posture-belt.json and
+  templates/product.cinemafold.json for examples.
 {% endcomment %}
 {{ 'fayzo-navy.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'fz-product.js' | asset_url }}" defer="defer"></script>
 {%- liquid
-  assign variant = product.selected_or_first_available_variant
-  assign img0 = product.featured_media | default: product.media[0]
-  assign img1 = product.media[1] | default: img0
-  assign img2 = product.media[2] | default: img0
-  assign img3 = product.media[3] | default: img0
-  assign img4 = product.media[4] | default: img0
+  assign product_form_id = 'product-form-' | append: section.id
+  assign has_checklist = false
+  assign has_crosssell = false
+  for block in section.blocks
+    if block.type == 'checklist_item'
+      assign has_checklist = true
+    endif
+    if block.type == 'crosssell_item' and block.settings.product != blank
+      assign has_crosssell = true
+    endif
+  endfor
 -%}
 <div class="fz" id="fayzo-product-top">
   <div class="fz-pdp__grid">
     <div class="fz-pdp__gallery">
       <div class="fz-pdp__main-media" id="FzMainMedia-{{ section.id }}">
-        {%- if img0 -%}{{ img0 | image_url: width: 900 | image_tag: loading: 'eager', alt: product.title }}{%- endif -%}
-        <span class="fz-pdp__badge">#1 best seller</span>
-        <span class="fz-pdp__badge-note fz-only-desktop">our photo, not the supplier&rsquo;s</span>
-        <span class="fz-pdp__counter fz-only-mobile">1 / {{ product.media.size | at_least: 1 }}</span>
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'eager', alt: product.title }}
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'badge' and block.settings.text != blank -%}
+            <span class="fz-pdp__badge" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
 
-      <div class="fz-pdp__thumbs fz-only-desktop">
-        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb">{%- if img1 -%}{{ img1 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb">{%- if img2 -%}{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <div class="fz-pdp__thumb fz-pdp__thumb--label">how to<br>wear</div>
-        <div class="fz-pdp__thumb fz-pdp__thumb--label">15s<br>video</div>
-        <div class="fz-pdp__thumb fz-pdp__thumb--label">size<br>chart</div>
-      </div>
-
-      <div class="fz-pdp__thumbs fz-only-mobile">
-        <button type="button" class="fz-pdp__thumb fz-pdp__thumb--active">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb">{%- if img0 -%}{{ img0 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb">{%- if img2 -%}{{ img2 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb">{%- if img3 -%}{{ img3 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</button>
-        <button type="button" class="fz-pdp__thumb" style="position:relative">
-          {%- if img4 -%}{{ img4 | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
-          <span class="fz-problem__play" style="position:absolute"><span style="width:32px;height:32px;font-size:11px">&#9654;</span></span>
-        </button>
-      </div>
-
-      <div class="fz-pdp__social-mini fz-only-desktop">
-        <div class="fz-eyebrow">Real customers, real desks</div>
-        <div class="fz-pdp__social-mini-head">
-          <div class="fz-pdp__social-mini-avatar">{%- if img1 -%}{{ img1 | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</div>
-          <div>
-            <div class="fz-stars" style="letter-spacing:1.5px;font-size:11px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>&ldquo;Four days in and the 4pm ache is gone. The page told me to size up, which was the right call.&rdquo;</p>
-            <div class="fz-pdp__social-mini-meta">Vikram &middot; Sharjah &middot; verified order</div>
-          </div>
+      {%- if product.media.size > 1 -%}
+        <div class="fz-pdp__thumbs">
+          {%- for media in product.media limit: 8 -%}
+            <button
+              type="button"
+              class="fz-pdp__thumb{% if forloop.first %} fz-pdp__thumb--active{% endif %}"
+              data-full="{{ media | image_url: width: 900 }}"
+            >
+              {{ media | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+            </button>
+          {%- endfor -%}
         </div>
-      </div>
+      {%- endif -%}
     </div>
 
     <div class="fz-pdp__info">
-      <div class="fz-eyebrow">Tested 5, kept 1</div>
-      <h1 class="fz-pdp__title">{{ product.title }}</h1>
-      <div class="fz-pdp__rating-row">
-        <span class="fz-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        4.7 &middot; <a href="#fz-reviews" style="text-decoration:underline">212 reviews</a>
-        <span class="fz-pdp__rating-pill fz-only-desktop">Most reordered</span>
-      </div>
-      <p class="fz-pdp__lede">
-        No more slumping into your monitor by mid-afternoon.
-        <strong class="fz-only-desktop">Twenty minutes a day is enough to feel the difference in a week.</strong>
-        <strong class="fz-only-mobile">Twenty minutes a day is enough.</strong>
-      </p>
-
-      {%- comment -%} ===== Desktop buy box (2a order: tiers, size, delivery cards, verdict) ===== {%- endcomment -%}
-      <div class="fz-only-desktop">
-        {%- form 'product', product, id: 'FzBuyForm-d', class: 'fz-buy-form' -%}
-          <input type="hidden" name="id" value="{{ variant.id }}">
-          <div class="fz-tiers">
-            <label class="fz-tier">
-              <input type="radio" name="fz-tier-d" value="1" style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__body">
-                <span class="fz-tier__title">Just one</span>
-                <span class="fz-tier__meta">Try it first. Most people do.</span>
-              </span>
-              <span class="fz-tier__price">{{ variant.price | money }}</span>
-            </label>
-            <label class="fz-tier">
-              <input type="radio" name="fz-tier-d" value="2" checked style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__body">
-                <span class="fz-tier__title">Two &mdash; one for home, one for the office</span>
-                <span class="fz-tier__meta">Save AED 39. Shipping one parcel instead of two costs us less, so it costs you less.</span>
-              </span>
-              <span>
-                <span class="fz-tier__price">AED 219</span>
-                <span class="fz-tier__price-each">AED 109.50 each</span>
-              </span>
-              <span class="fz-tier__badge">Most picked</span>
-            </label>
-            <label class="fz-tier">
-              <input type="radio" name="fz-tier-d" value="3" style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__body">
-                <span class="fz-tier__title">Three &mdash; the desk bundle</span>
-                <span class="fz-tier__meta">Belt + lumbar wedge + cable nest. Save AED 88.</span>
-              </span>
-              <span>
-                <span class="fz-tier__price">AED 289</span>
-                <span class="fz-tier__price-was">was AED 377</span>
-              </span>
-            </label>
-          </div>
-
-          <div class="fz-size-label">Size &mdash; it runs small, size up if you are near the limit</div>
-          <div class="fz-sizes">
-            <label class="fz-size"><input type="radio" name="fz-size-d" value="sm" style="display:none">S/M &middot; 75&ndash;95cm</label>
-            <label class="fz-size"><input type="radio" name="fz-size-d" value="lxl" checked style="display:none">L/XL &middot; 95&ndash;115cm</label>
-            <label class="fz-size fz-size--disabled">XXL &middot; 24 Aug</label>
-          </div>
-
-          <div class="fz-delivery-cards">
-            <div class="fz-delivery-card">
-              <div class="fz-delivery-card__title">Arrives Sunday 17 Aug</div>
-              <div class="fz-delivery-card__desc">In stock in Dubai. A real date, not an estimate from abroad.</div>
-            </div>
-            <div class="fz-delivery-card">
-              <div class="fz-delivery-card__title">14 days to change your mind</div>
-              <div class="fz-delivery-card__desc">We pay the return courier. Refuse it at the door if you like.</div>
-            </div>
-          </div>
-
-          <div class="fz-verdict">
-            <div class="fz-eyebrow">Our verdict after 3 weeks</div>
-            <p>We tested five. Four dug into the armpits within an hour, which is why people abandon them in a drawer. This one spreads the pull across the shoulder blades, and we kept wearing it after the test ended.</p>
-            <div class="fz-verdict__grid">
-              <div><div class="fz-buy">Buy it if</div><div style="margin-top:4px">You sit 6+ hours and ache between the shoulder blades.</div></div>
-              <div><div class="fz-skip">Skip it if</div><div style="margin-top:4px">You have a diagnosed spinal condition. See a physio, not us.</div></div>
-            </div>
-          </div>
-
-          <button type="submit" class="fz-cta-navy">
-            <span class="fz-cta-navy__title">Add to cart &mdash; AED 219</span>
-            <span class="fz-cta-navy__note">2 belts &middot; you save AED 39 &middot; free delivery</span>
-          </button>
-        {%- endform -%}
-        <button type="button" class="fz-cta-amber">Buy now &mdash; Apple Pay</button>
-        <div class="fz-payment-row">
-          <span class="fz-payment-chip">VISA</span>
-          <span class="fz-payment-chip">MC</span>
-          <span class="fz-payment-chip">AMEX</span>
-          <span class="fz-payment-chip">TABBY</span>
-          <span class="fz-payment-chip">APPLE PAY</span>
-          <span class="fz-payment-chip">COD</span>
-        </div>
-      </div>
-
-      {%- comment -%} ===== Mobile buy box (2c order: tiers, size, verdict, delivery note) ===== {%- endcomment -%}
-      <div class="fz-only-mobile">
-        {%- form 'product', product, id: 'FzBuyForm-m', class: 'fz-buy-form' -%}
-          <input type="hidden" name="id" value="{{ variant.id }}">
-          <div class="fz-tiers">
-            <label class="fz-tier">
-              <input type="radio" name="fz-tier-m" value="1" style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__title" style="flex:1">Just one</span>
-              <span class="fz-tier__price">{{ variant.price | money }}</span>
-            </label>
-            <label class="fz-tier" style="position:relative">
-              <input type="radio" name="fz-tier-m" value="2" checked style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__body">
-                <span class="fz-tier__title">Two &mdash; office and home</span>
-                <span class="fz-tier__meta fz-tier__meta--save">Save AED 39</span>
-              </span>
-              <span class="fz-tier__price">AED 219</span>
-              <span class="fz-tier__badge">Most picked</span>
-            </label>
-            <label class="fz-tier">
-              <input type="radio" name="fz-tier-m" value="3" style="display:none">
-              <span class="fz-tier__radio"></span>
-              <span class="fz-tier__body">
-                <span class="fz-tier__title">The desk bundle</span>
-                <span class="fz-tier__meta">Belt + wedge + cable nest</span>
-              </span>
-              <span class="fz-tier__price">AED 289</span>
-            </label>
-          </div>
-
-          <div class="fz-size-label">Size &mdash; runs small</div>
-          <div class="fz-sizes">
-            <label class="fz-size"><input type="radio" name="fz-size-m" value="sm" style="display:none">S/M</label>
-            <label class="fz-size"><input type="radio" name="fz-size-m" value="lxl" checked style="display:none">L/XL</label>
-            <label class="fz-size fz-size--disabled">XXL</label>
-          </div>
-
-          <div class="fz-verdict fz-verdict--compact">
-            <div class="fz-eyebrow">Our verdict</div>
-            <p>Tested five. Four dug into the armpits within an hour. This one didn&rsquo;t, and we kept wearing it after the test.</p>
-            <div class="fz-verdict-inline">
-              <strong class="fz-buy">Buy if</strong> you sit 6+ hours and ache between the shoulder blades.<br>
-              <strong class="fz-skip">Skip if</strong> you have a diagnosed spinal condition.
-            </div>
-          </div>
-
-          <div class="fz-delivery-note">
-            <strong>Arrives Sunday 17 Aug</strong> to Dubai &middot; in stock locally<br>
-            14-day returns and we pay the courier
-          </div>
-
-          <div class="fz-payment-row">
-            <span class="fz-payment-chip">VISA</span>
-            <span class="fz-payment-chip">MC</span>
-            <span class="fz-payment-chip">TABBY</span>
-            <span class="fz-payment-chip">APPLE PAY</span>
-            <span class="fz-payment-chip">COD</span>
-          </div>
-        {%- endform -%}
-      </div>
-    </div>
-  </div>
-
-  <div class="fz-crosssell">
-    <div>
-      <div class="fz-crosssell__title">{{ section.settings.crosssell_heading }}</div>
-      <div class="fz-crosssell__sub">{{ section.settings.crosssell_subheading }}</div>
-    </div>
-    <div class="fz-crosssell__items">
       {%- for block in section.blocks -%}
-        {%- if block.type == 'crosssell_item' and block.settings.product -%}
-          {%- assign cs_product = block.settings.product -%}
-          <div class="fz-crosssell__item">
-            <div class="fz-crosssell__item-img">
-              {%- if cs_product.featured_image -%}
-                {{ cs_product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: cs_product.title }}
-              {%- endif -%}
-            </div>
-            <div>
-              <div class="fz-crosssell__item-title">{{ cs_product.title | default: block.settings.fallback_title }}</div>
-              <div class="fz-crosssell__item-price">
-                {{ cs_product.price | money }}
-                {%- if cs_product.compare_at_price > cs_product.price -%}
-                  <s>{{ cs_product.compare_at_price | money }}</s>
+        {%- case block.type -%}
+          {%- when 'eyebrow' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="fz-eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+            {%- endif -%}
+
+          {%- when 'rating' -%}
+            {%- if block.settings.score != blank -%}
+              <div class="fz-pdp__rating-row" {{ block.shopify_attributes }}>
+                <span class="fz-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                {{ block.settings.score }}
+                {%- if block.settings.count_label != blank -%}
+                  &middot; {{ block.settings.count_label }}
                 {%- endif -%}
               </div>
+            {%- endif -%}
+
+          {%- when 'hook' -%}
+            {%- if block.settings.text != blank -%}
+              <p class="fz-pdp__lede" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+            {%- endif -%}
+
+          {%- when 'buy_box' -%}
+            <h1 class="fz-pdp__title">{{ product.title }}</h1>
+            <div class="fz-pdp__buybox" data-fz-buybox {{ block.shopify_attributes }}>
+              {%- render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id -%}
+
+              <div class="fz-pdp__price">
+                <span data-fz-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+                <s
+                  data-fz-compare-price
+                  {%- unless product.selected_or_first_available_variant.compare_at_price
+                    > product.selected_or_first_available_variant.price
+                  %}
+                    hidden
+                  {%- endunless -%}
+                >{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+              </div>
+
+              {%- if block.settings.delivery_line_1 != blank or block.settings.delivery_line_2 != blank -%}
+                <div class="fz-delivery-cards">
+                  {%- if block.settings.delivery_line_1 != blank -%}
+                    <div class="fz-delivery-card">
+                      <div class="fz-delivery-card__title">{{ block.settings.delivery_line_1 }}</div>
+                      {%- if block.settings.delivery_line_1_desc != blank -%}
+                        <div class="fz-delivery-card__desc">{{ block.settings.delivery_line_1_desc }}</div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.delivery_line_2 != blank -%}
+                    <div class="fz-delivery-card">
+                      <div class="fz-delivery-card__title">{{ block.settings.delivery_line_2 }}</div>
+                      {%- if block.settings.delivery_line_2_desc != blank -%}
+                        <div class="fz-delivery-card__desc">{{ block.settings.delivery_line_2_desc }}</div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- render 'buy-buttons',
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id,
+                show_pickup_availability: false
+              -%}
+
+              <div class="fz-payment-row">
+                <span class="fz-payment-chip">VISA</span>
+                <span class="fz-payment-chip">MC</span>
+                <span class="fz-payment-chip">TABBY</span>
+                <span class="fz-payment-chip">APPLE PAY</span>
+                <span class="fz-payment-chip">COD</span>
+              </div>
+
+              <script type="application/json" data-fz-variants>
+                [
+                  {%- for v in product.variants -%}
+                    {%- assign v_on_sale = false -%}
+                    {%- if v.compare_at_price > v.price -%}{%- assign v_on_sale = true -%}{%- endif -%}
+                    {
+                      "id": {{ v.id | json }},
+                      "options": {{ v.options | json }},
+                      "available": {{ v.available | json }},
+                      "price": {{ v.price | money | json }},
+                      "compare_at_price": {{ v.compare_at_price | money | json }},
+                      "on_sale": {{ v_on_sale | json }}
+                    }{% unless forloop.last %},{% endunless %}
+                  {%- endfor -%}
+                ]
+              </script>
             </div>
-            {%- form 'product', cs_product -%}
-              <input type="hidden" name="id" value="{{ cs_product.selected_or_first_available_variant.id }}">
-              <button type="submit" class="fz-crosssell__item-add">Add</button>
-            {%- endform -%}
-          </div>
-        {%- endif -%}
+
+          {%- when 'verdict' -%}
+            {%- if block.settings.good_for != blank or block.settings.not_for != blank -%}
+              <div class="fz-verdict" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <div class="fz-eyebrow">{{ block.settings.heading }}</div>
+                {%- endif -%}
+                <div class="fz-verdict__grid">
+                  {%- if block.settings.good_for != blank -%}
+                    <div><div class="fz-buy">Good for</div><div style="margin-top:4px">{{ block.settings.good_for }}</div></div>
+                  {%- endif -%}
+                  {%- if block.settings.not_for != blank -%}
+                    <div><div class="fz-skip">Not for</div><div style="margin-top:4px">{{ block.settings.not_for }}</div></div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+
+          {%- when 'description' -%}
+            {%- if product.description != blank -%}
+              <div class="fz-pdp__description rte" {{ block.shopify_attributes }}>
+                {{ product.description }}
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
       {%- endfor -%}
     </div>
   </div>
 
-  <div class="fz-press-row fz-only-desktop">
-    <span class="fz-press-row__label">Written about in</span>
-    <span class="fz-press-row__logo">logo &mdash; press 1</span>
-    <span class="fz-press-row__logo">logo &mdash; press 2</span>
-    <span class="fz-press-row__logo">logo &mdash; press 3</span>
-    <span class="fz-press-row__logo">logo &mdash; press 4</span>
-  </div>
-
-  <div class="fz-problem fz-only-desktop">
-    <div class="fz-problem__media">
-      {%- if section.settings.problem_video_poster != blank -%}
-        {{ section.settings.problem_video_poster | image_url: width: 1400 | image_tag: loading: 'lazy', alt: 'video — slouch vs. supported, same desk' }}
-      {%- endif -%}
-      <div class="fz-problem__play"><span>&#9654;</span></div>
-    </div>
-    <div class="fz-problem__copy">
-      <div class="fz-eyebrow fz-eyebrow--orange">The actual problem</div>
-      <h2>{{ section.settings.problem_heading }}</h2>
-      <p>{{ section.settings.problem_text_1 }}</p>
-      <p>{{ section.settings.problem_text_2 }}</p>
-      <div style="margin-top:20px">
-        <a href="#" class="fz-btn fz-btn--amber" style="padding:15px 20px;font-size:14.5px">See the sizes &rarr;</a>
+  {%- if has_crosssell -%}
+    <div class="fz-crosssell">
+      <div>
+        <div class="fz-crosssell__title">{{ section.settings.crosssell_heading }}</div>
+        {%- if section.settings.crosssell_subheading != blank -%}
+          <div class="fz-crosssell__sub">{{ section.settings.crosssell_subheading }}</div>
+        {%- endif -%}
+      </div>
+      <div class="fz-crosssell__items">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'crosssell_item' and block.settings.product != blank -%}
+            {%- assign cs_product = block.settings.product -%}
+            <div class="fz-crosssell__item" {{ block.shopify_attributes }}>
+              <div class="fz-crosssell__item-img">
+                {%- if cs_product.featured_image -%}
+                  {{ cs_product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: cs_product.title }}
+                {%- endif -%}
+              </div>
+              <div>
+                <div class="fz-crosssell__item-title">{{ cs_product.title }}</div>
+                <div class="fz-crosssell__item-price">
+                  {{ cs_product.price | money }}
+                  {%- if cs_product.compare_at_price > cs_product.price -%}
+                    <s>{{ cs_product.compare_at_price | money }}</s>
+                  {%- endif -%}
+                </div>
+              </div>
+              {%- form 'product', cs_product -%}
+                <input type="hidden" name="id" value="{{ cs_product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="fz-crosssell__item-add">Add</button>
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
     </div>
-  </div>
+  {%- endif -%}
 
-  <div class="fz-checklist fz-only-desktop">
-    <h2>{{ section.settings.checklist_heading }}</h2>
-    <div class="fz-checklist__grid">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'checklist_item' -%}
-          <div>
-            <div class="fz-checklist__media">
+  {%- if section.settings.problem_heading != blank -%}
+    <div class="fz-problem">
+      {%- if section.settings.problem_image != blank -%}
+        <div class="fz-problem__media">
+          {{ section.settings.problem_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.problem_heading }}
+        </div>
+      {%- endif -%}
+      <div class="fz-problem__copy">
+        <div class="fz-eyebrow fz-eyebrow--orange">The actual problem</div>
+        <h2>{{ section.settings.problem_heading }}</h2>
+        {%- if section.settings.problem_text_1 != blank -%}<p>{{ section.settings.problem_text_1 }}</p>{%- endif -%}
+        {%- if section.settings.problem_text_2 != blank -%}<p>{{ section.settings.problem_text_2 }}</p>{%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if has_checklist -%}
+    <div class="fz-checklist">
+      {%- if section.settings.checklist_heading != blank -%}<h2>{{ section.settings.checklist_heading }}</h2>{%- endif -%}
+      <div class="fz-checklist__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'checklist_item' -%}
+            <div {{ block.shopify_attributes }}>
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                <div class="fz-checklist__media">
+                  {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                </div>
               {%- endif -%}
+              <div class="fz-checklist__title">{{ block.settings.title }}</div>
+              <p class="fz-checklist__desc">{{ block.settings.description }}</p>
             </div>
-            <div class="fz-checklist__title">{{ block.settings.title }}</div>
-            <p class="fz-checklist__desc">{{ block.settings.description }}</p>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     </div>
-  </div>
+  {%- endif -%}
 
-  <div class="fz-stats fz-stats--section fz-only-desktop">
-    <div class="fz-container fz-stats__head">
-      <div class="fz-eyebrow fz-eyebrow--amber">Before it went on sale</div>
-      <h2>{{ section.settings.stats_heading }}</h2>
+  {%- if section.settings.stats_heading != blank -%}
+    <div class="fz-stats fz-stats--section">
+      <div class="fz-container fz-stats__head">
+        <h2>{{ section.settings.stats_heading }}</h2>
+      </div>
+      <div class="fz-container fz-stats__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="fz-stat" {{ block.shopify_attributes }}>
+              <div class="fz-stat__num">{{ block.settings.number }}</div>
+              <div class="fz-stat__desc">{{ block.settings.description }}</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.stats_footnote != blank -%}
+        <div class="fz-container fz-stats__footnote">{{ section.settings.stats_footnote }}</div>
+      {%- endif -%}
     </div>
-    <div class="fz-container fz-stats__grid">
-      <div class="fz-stat"><div class="fz-stat__num">41</div><div class="fz-stat__desc">said the afternoon ache was noticeably better within a week</div></div>
-      <div class="fz-stat"><div class="fz-stat__num">4</div><div class="fz-stat__desc">felt no difference at all. Two of them sat less than four hours a day</div></div>
-      <div class="fz-stat"><div class="fz-stat__num">2</div><div class="fz-stat__desc">gave it back. One found it too warm, one wanted a firmer pull</div></div>
-    </div>
-    <div class="fz-container fz-stats__footnote">We publish the misses because a page where everything works is a page nobody believes.</div>
-  </div>
+  {%- endif -%}
 
-  <div class="fz-stats fz-only-mobile" style="padding:20px 16px">
-    <div class="fz-eyebrow fz-eyebrow--amber">47 testers, two weeks</div>
-    <div class="fz-stats__grid" style="margin-top:14px">
-      <div class="fz-stat" style="flex:1"><div class="fz-stat__num">41</div><div class="fz-stat__desc">felt better in a week</div></div>
-      <div class="fz-stat" style="flex:1"><div class="fz-stat__num">4</div><div class="fz-stat__desc">felt no difference</div></div>
-      <div class="fz-stat" style="flex:1"><div class="fz-stat__num">2</div><div class="fz-stat__desc">gave it back</div></div>
-    </div>
-  </div>
-
-  {%- render 'fayzo-navy-sticky-atc', product: product, variant: variant -%}
+  {%- render 'fayzo-navy-sticky-atc', product: product -%}
 </div>
-
-<script>
-  (() => {
-    document.querySelectorAll('#fayzo-product-top .fz-pdp__thumbs').forEach((group) => {
-      const main = group.closest('.fz-pdp__gallery').querySelector('.fz-pdp__main-media img');
-      group.querySelectorAll('.fz-pdp__thumb').forEach((thumb) => {
-        const thumbImg = thumb.querySelector('img');
-        if (!thumbImg || thumb.tagName !== 'BUTTON') return;
-        thumb.addEventListener('click', () => {
-          group.querySelectorAll('.fz-pdp__thumb--active').forEach((t) => t.classList.remove('fz-pdp__thumb--active'));
-          thumb.classList.add('fz-pdp__thumb--active');
-          if (main) {
-            main.src = thumbImg.src;
-            main.srcset = thumbImg.srcset || '';
-          }
-        });
-      });
-    });
-  })();
-</script>
 
 {% schema %}
 {
@@ -352,23 +287,96 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "crosssell_heading", "label": "Cross-sell heading", "default": "Complete the desk fix" },
-    { "type": "text", "id": "crosssell_subheading", "label": "Cross-sell subheading", "default": "Added with the belt by most buyers · 20% off when bought together" },
-    { "type": "image_picker", "id": "problem_video_poster", "label": "Problem section video poster" },
-    { "type": "text", "id": "problem_heading", "label": "Problem heading", "default": "Your chair is fine. Nine hours in it is the problem." },
-    { "type": "textarea", "id": "problem_text_1", "label": "Problem paragraph 1", "default": "By mid-afternoon your shoulders round forward, your neck follows, and the ache between your shoulder blades sets in. Stretching at 6pm undoes about an hour of it." },
-    { "type": "textarea", "id": "problem_text_2", "label": "Problem paragraph 2", "default": "The belt works as a reminder, not a brace. Twenty minutes a day of being held in the right position is enough for your back to start holding itself." },
-    { "type": "text", "id": "checklist_heading", "label": "Checklist heading", "default": "Five things we checked, so you don't have to" },
-    { "type": "text", "id": "stats_heading", "label": "Stats heading", "default": "We gave it to 47 people for two weeks. Here is all of it." }
+    { "type": "text", "id": "crosssell_heading", "label": "Cross-sell heading", "default": "You might also like" },
+    { "type": "text", "id": "crosssell_subheading", "label": "Cross-sell subheading" },
+    { "type": "image_picker", "id": "problem_image", "label": "Problem section image" },
+    { "type": "text", "id": "problem_heading", "label": "Problem heading", "info": "Leave blank to hide this whole section." },
+    { "type": "textarea", "id": "problem_text_1", "label": "Problem paragraph 1" },
+    { "type": "textarea", "id": "problem_text_2", "label": "Problem paragraph 2" },
+    { "type": "text", "id": "checklist_heading", "label": "Checklist heading" },
+    { "type": "url", "id": "whatsapp_link", "label": "WhatsApp link (for the mobile sticky bar)", "info": "Leave blank to hide the WhatsApp button." },
+    { "type": "text", "id": "stats_heading", "label": "Stats heading", "info": "Leave blank to hide this whole section. Only use real numbers." },
+    { "type": "textarea", "id": "stats_footnote", "label": "Stats footnote" }
   ],
   "blocks": [
     {
+      "type": "badge",
+      "name": "Gallery badge",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Badge text", "info": "e.g. \"Best seller\" — only use if true." }
+      ]
+    },
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow text",
+      "settings": [{ "type": "text", "id": "text", "label": "Text" }]
+    },
+    {
+      "type": "rating",
+      "name": "Rating summary",
+      "settings": [
+        { "type": "text", "id": "score", "label": "Score", "info": "e.g. 4.7 — leave blank if you have no reviews yet." },
+        { "type": "text", "id": "count_label", "label": "Count label", "info": "e.g. \"212 reviews\"" }
+      ]
+    },
+    {
+      "type": "hook",
+      "name": "Hook line",
+      "settings": [{ "type": "textarea", "id": "text", "label": "Short hook / lede text" }]
+    },
+    {
+      "type": "buy_box",
+      "name": "Buy box (variants + cart)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "label": "Option picker style",
+          "options": [
+            { "value": "button", "label": "Buttons" },
+            { "value": "dropdown", "label": "Dropdown" },
+            { "value": "swatch", "label": "Swatches" }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "select",
+          "id": "swatch_shape",
+          "label": "Swatch shape",
+          "options": [
+            { "value": "circle", "label": "Circle" },
+            { "value": "square", "label": "Square" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "none"
+        },
+        { "type": "text", "id": "delivery_line_1", "label": "Delivery card 1 title" },
+        { "type": "text", "id": "delivery_line_1_desc", "label": "Delivery card 1 description" },
+        { "type": "text", "id": "delivery_line_2", "label": "Delivery card 2 title" },
+        { "type": "text", "id": "delivery_line_2_desc", "label": "Delivery card 2 description" }
+      ]
+    },
+    {
+      "type": "verdict",
+      "name": "Our take / verdict",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Our take" },
+        { "type": "textarea", "id": "good_for", "label": "Good for" },
+        { "type": "textarea", "id": "not_for", "label": "Not for" }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Product description",
+      "limit": 1,
+      "settings": []
+    },
+    {
       "type": "crosssell_item",
       "name": "Cross-sell product",
-      "settings": [
-        { "type": "product", "id": "product", "label": "Product" },
-        { "type": "text", "id": "fallback_title", "label": "Fallback title" }
-      ]
+      "settings": [{ "type": "product", "id": "product", "label": "Product" }]
     },
     {
       "type": "checklist_item",
@@ -378,6 +386,20 @@
         { "type": "text", "id": "title", "label": "Title" },
         { "type": "textarea", "id": "description", "label": "Description" }
       ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "info": "e.g. \"41\" — only use real, measured data." },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.main-product.name",
+      "blocks": [{ "type": "buy_box" }, { "type": "description" }]
     }
   ]
 }
